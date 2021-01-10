@@ -1,0 +1,80 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mana-and-artifice:desert_nova"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "arcanefundamentals:desert_nova_crop",
+          "properties": {
+            "age": "7"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "arcanefundamentals:desert_nova_seed",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:block_state_property",
+                "block": "arcanefundamentals:desert_nova_crop",
+                "properties": {
+                  "age": "7"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "arcanefundamentals:desert_nova_seed",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:alternative",
+                "terms": [
+                  {
+                    "condition": "minecraft:inverted",
+                    "term": {
+                      "condition": "minecraft:random_chance",
+                      "chance": 1.0
+                    }
+                  },
+                  {
+                    "condition": "minecraft:inverted",
+                    "term": {
+                      "condition": "minecraft:block_state_property",
+                      "block": "arcanefundamentals:desert_nova_crop",
+                      "properties": {
+                        "age": "7"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

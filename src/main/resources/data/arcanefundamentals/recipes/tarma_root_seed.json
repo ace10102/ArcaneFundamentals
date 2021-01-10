@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanefundamentals:aum_seed"
+    },
+    {
+      "item": "minecraft:vine"
+    },
+    {
+      "item": "mana-and-artifice:purified_vinteum_dust"
+    },
+    {
+      "item": "minecraft:wheat_seeds"
+    }
+  ],
+  "result": {
+    "item": "arcanefundamentals:tarma_root_seed",
+    "count": 1
+  }
+}

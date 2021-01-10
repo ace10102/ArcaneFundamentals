@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "arcanefundamentals:block/aum_crop/aum_2"
+  }
+}

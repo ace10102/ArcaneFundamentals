@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanefundamentals:cerublossom_seed"
+    },
+    {
+      "item": "minecraft:lily_pad"
+    },
+    {
+      "item": "mana-and-artifice:purified_vinteum_dust"
+    },
+    {
+      "item": "minecraft:wheat_seeds"
+    }
+  ],
+  "result": {
+    "item": "arcanefundamentals:wakebloom_seed",
+    "count": 1
+  }
+}

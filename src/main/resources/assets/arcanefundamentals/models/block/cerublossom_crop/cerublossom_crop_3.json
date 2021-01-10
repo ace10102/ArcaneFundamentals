@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "arcanefundamentals:block/cerublossom_crop/cerublossom_3"
+  }
+}

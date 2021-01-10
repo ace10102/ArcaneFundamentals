@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanefundamentals:wakebloom_seed"
+    },
+    {
+      "item": "minecraft:cactus"
+    },
+    {
+      "item": "mana-and-artifice:purified_vinteum_dust"
+    },
+    {
+      "item": "minecraft:wheat_seeds"
+    }
+  ],
+  "result": {
+    "item": "arcanefundamentals:desert_nova_seed",
+    "count": 1
+  }
+}

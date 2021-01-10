@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "arcanefundamentals:block/desert_nova_crop/desert_nova_crop_1"
+  }
+}

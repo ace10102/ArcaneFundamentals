@@ -1,0 +1,80 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mana-and-artifice:cerublossom"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "arcanefundamentals:cerublossom_crop",
+          "properties": {
+            "age": "7"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "arcanefundamentals:cerublossom_seed",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:block_state_property",
+                "block": "arcanefundamentals:cerublossom_crop",
+                "properties": {
+                  "age": "7"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "arcanefundamentals:cerublossom_seed",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:alternative",
+                "terms": [
+                  {
+                    "condition": "minecraft:inverted",
+                    "term": {
+                      "condition": "minecraft:random_chance",
+                      "chance": 1.0
+                    }
+                  },
+                  {
+                    "condition": "minecraft:inverted",
+                    "term": {
+                      "condition": "minecraft:block_state_property",
+                      "block": "arcanefundamentals:cerublossom_crop",
+                      "properties": {
+                        "age": "7"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

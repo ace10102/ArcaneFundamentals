@@ -1,0 +1,8 @@
+{
+  "block.arcanefundamentals.desert_nova_crop":  "Desert Nova Seeds",
+  "block.arcanefundamentals.tarma_root_crop":  "Tarma Root Seeds",
+  "block.arcanefundamentals.wakebloom_crop":  "Wakebloom Seeds",
+  "block.arcanefundamentals.aum_crop":  "Aum Seeds",
+  "block.arcanefundamentals.cerublossom_crop":  "Cerublossom Seeds",
+  "itemGroup.arcaneFundamentalsTab": "Arcane Fundamentals"
+}
