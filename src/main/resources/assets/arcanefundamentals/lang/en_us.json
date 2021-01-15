@@ -4,5 +4,7 @@
   "block.arcanefundamentals.wakebloom_crop":  "Wakebloom Seeds",
   "block.arcanefundamentals.aum_crop":  "Aum Seeds",
   "block.arcanefundamentals.cerublossom_crop":  "Cerublossom Seeds",
-  "itemGroup.arcaneFundamentalsTab": "Arcane Fundamentals"
+  "itemGroup.arcaneFundamentalsTab": "Arcane Fundamentals",
+  
+  "arcanefundamentals:rituals/unspell":"Ritual of Unspelling"
 }

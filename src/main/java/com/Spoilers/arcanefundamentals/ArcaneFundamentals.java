@@ -3,9 +3,9 @@ package com.Spoilers.arcanefundamentals;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.Spoilers.arcanefundamentals.rituals.RitualEffectDecryptSpell;
+import com.Spoilers.arcanefundamentals.rituals.RitualEffectUnspell;
 import com.Spoilers.arcanefundamentals.util.RegistryHandler;
-
+import com.ma.api.guidebook.RegisterGuidebooksEvent;
 import com.ma.api.rituals.RitualEffect;
 
 import net.minecraft.client.renderer.RenderType;
@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,13 +30,18 @@ public class ArcaneFundamentals {
 	
 	public ArcaneFundamentals() {
 		
-		/*FMLJavaModLoadingContext.get()).register(RegisterBook.onRegisterRituals);
-		MinecraftForge.EVENT_BUS.register(RegisterBook.class :: onRegisterGuidebooks);*/
 		modEventBus.addListener(this::doClientStuff);
 
         RegistryHandler.init();
 
+        MinecraftForge.EVENT_BUS.register(this);
 	}
+	
+	@SubscribeEvent
+    public void onRegisterGuidebooks(RegisterGuidebooksEvent event) {
+        event.getRegistry().addGuidebookPath(new ResourceLocation(ArcaneFundamentals.MOD_ID, "guide"));
+        ArcaneFundamentals.LOGGER.info("Arcane Fundamentals: guide registered");
+    }
 	
 	private void doClientStuff(final FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(RegistryHandler.DESERT_NOVA_CROP.get(), RenderType.getCutout());
@@ -57,9 +63,9 @@ public class ArcaneFundamentals {
 		
 		@SubscribeEvent
 		public static void onRegisterRituals(RegistryEvent.Register<RitualEffect> event) {
-			event.getRegistry().register(new RitualEffectDecryptSpell(new ResourceLocation(ArcaneFundamentals.MOD_ID, "rituals/decrypt_spell"))
-					.setRegistryName(new ResourceLocation(ArcaneFundamentals.MOD_ID, "ritual-effect-decrypt-spell")));
-			ArcaneFundamentals.LOGGER.info("Arcane Fundamentals rituals registered");
+			event.getRegistry().register(new RitualEffectUnspell(new ResourceLocation(ArcaneFundamentals.MOD_ID, "rituals/unspell"))
+					.setRegistryName(new ResourceLocation(ArcaneFundamentals.MOD_ID, "ritual-effect-unspelling")));
+			ArcaneFundamentals.LOGGER.info("Arcane Fundamentals: rituals registered");
 		}
 	}
 }

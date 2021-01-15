@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mana-and-artifice:rune_marking"
+    }
+  ],
+  "result": {
+    "item": "mana-and-artifice:rune_marking",
+    "count": 1    
+  }
+}
