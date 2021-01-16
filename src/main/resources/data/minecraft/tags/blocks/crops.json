@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "arcanefundamentals:aum_crop",
+    "arcanefundamentals:cerublossom_crop",
+    "arcanefundamentals:desert_nova_crop",
+    "arcanefundamentals:tarma_root_crop",
+    "arcanefundamentals:wakebloom_crop"
+  ]
+}

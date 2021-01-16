@@ -104,7 +104,7 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.4-35.1.36'
 
     compileOnly 'blank:mana-and-artifice-1.2.1.5:api' //api, compilation only
-    runtimeOnly fg.deobf('blank:mana-and-artifice:1.2.1.8') //mod itself, deobf for runtime
+    runtimeOnly fg.deobf('blank:mana-and-artifice:1.2.1.9') //mod itself, deobf for runtime
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.4-4.0.3.3")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.4-4.0.3.3:api")

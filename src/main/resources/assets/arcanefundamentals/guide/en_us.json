@@ -49,18 +49,28 @@
   },
   
   "Recycle runes": {
-    "index": 0,
-    "category": "rituals",
+    "index": -95,
+    "category": "runesmithing",
     "sections": [
       {
     	"type": "title",
-        "value": "Return to Overworld"
+        "value": "Recycling Botched Plates"
       },
       {
         "type": "text",
-        "value": "A cheap, but complex, ritual to summon a portal to transport you home, or at least to the overworld."
+        "value": "With the number of failed runescribing attempts piling up, I decided to try and get some reusability out of them.\n\nBy smashing the botched plates and working them into some fresh clay on my anvil I should be able to make a new blank plate ready to be fired. "
       }
-    ]
+    ],
+    "related_recipes": [
+	  {
+		"type": "runesmithing",
+		"location": "arcanefundamentals:runeforging/recycle_rune_pattern"
+	  },
+	  {
+		"type": "runesmithing",
+		"location": "arcanefundamentals:runeforging/recycle_rune_pattern2"
+	  }
+	]
   },
   
   "Unspell": {
@@ -73,7 +83,7 @@
       },
       {
         "type": "text",
-        "value": "Through a bit of tinkering, you have discovered that, by inverting the rune pattern of the Ritual of Arcana, and casting the manaweave patterns of a spell in reverse order, you can destabilize a spell, causing it to collapse back into it's mundane components. "
+        "value": "Through a bit of tinkering, you have discovered that, by inverting the rune pattern of the Ritual of Arcana, you can destabilize a spell enough to cause it to collapse back into it's mundane components."
       },
       {
 		"type": "image",

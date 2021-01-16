@@ -41,13 +41,13 @@ public class TooltipHandler {
         }
 		if (KeyboardUtil.isCtrl()) {
 			if (!(stack.getItem().equals(roteBook))) {
-				tooltip.add((ITextComponent)new TranslationTextComponent("Right click: cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Shift right click on block: cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Shift right click on air: open book").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Use: cast").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on block: cast").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on air: open book").mergeStyle(TextFormatting.AQUA));
 			}
 			else {
-				tooltip.add((ITextComponent)new TranslationTextComponent("Right click: cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Shift right click: open book").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Use: cast").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use: open book").mergeStyle(TextFormatting.AQUA));
 			}
 		}	
 	}
