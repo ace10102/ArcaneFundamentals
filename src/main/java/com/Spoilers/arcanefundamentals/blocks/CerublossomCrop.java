@@ -19,12 +19,12 @@ public class CerublossomCrop extends CropsBlock {
     }
 
     @Override
-    protected IItemProvider getSeedsItem() {
-        return RegistryHandler.CERUBLOSSOM_SEED.get();
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE_BY_AGE[state.get(this.getAgeProperty())];
+    }
+    
+    @Override
+    protected IItemProvider getSeedsItem() {
+        return RegistryHandler.CERUBLOSSOM_SEED.get();
     }
 }

@@ -44,10 +44,14 @@ public class TooltipHandler {
 				tooltip.add((ITextComponent)new TranslationTextComponent("Use: cast").mergeStyle(TextFormatting.AQUA));
 				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on block: cast").mergeStyle(TextFormatting.AQUA));
 				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on air: open book").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Hold Z (default): spell selection").mergeStyle(TextFormatting.AQUA));
 			}
 			else {
 				tooltip.add((ITextComponent)new TranslationTextComponent("Use: cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use: open book").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use, no spell selected: open book").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on block, spell selected: cast").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on air, spell selected: open book").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("Hold Z (default): spell selection").mergeStyle(TextFormatting.AQUA));
 			}
 		}	
 	}

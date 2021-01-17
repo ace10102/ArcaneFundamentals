@@ -20,12 +20,12 @@ public class TarmaRootCrop extends CropsBlock {
     }
 
     @Override
-    protected IItemProvider getSeedsItem() {
-        return RegistryHandler.TARMA_ROOT_SEED.get();
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE_BY_AGE[state.get(this.getAgeProperty())];
+    }
+    
+    @Override
+    protected IItemProvider getSeedsItem() {
+        return RegistryHandler.TARMA_ROOT_SEED.get();
     }
 }

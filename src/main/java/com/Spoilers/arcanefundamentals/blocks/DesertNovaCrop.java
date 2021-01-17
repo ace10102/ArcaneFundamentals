@@ -4,9 +4,11 @@ import com.Spoilers.arcanefundamentals.util.RegistryHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -27,9 +29,18 @@ public class DesertNovaCrop extends CropsBlock {
     }
     
     @Override
+    public boolean isValidGround(BlockState groundBlock, IBlockReader worldIn, BlockPos pos) {
+    	ITag<Block> afTags = BlockTags.getCollection().get(new ResourceLocation("arcanefundamentals:desert_nova_growable"));
+        if (afTags != null) {
+            return afTags.contains(groundBlock.getBlock());
+        }
+        return false;
+    }
+    
+    @Override
 	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-    	BlockState groundBlock = worldIn.getBlockState(pos.down());
-    	return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && (groundBlock.isIn(Blocks.SAND) || groundBlock.isIn(Blocks.RED_SAND));
+    	BlockState groundState = worldIn.getBlockState(pos.down());
+    	return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && (this.isValidGround(groundState, worldIn, pos));
     }
     
     @Override

@@ -1,11 +1,16 @@
 package com.Spoilers.arcanefundamentals.blocks;
 
+//import com.Spoilers.arcanefundamentals.util.RegistryHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
+//import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -26,10 +31,24 @@ public class WakebloomCrop extends CropsBlock {
     }
     
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-    	BlockState groundstate = worldIn.getBlockState(pos.down());
-    	FluidState fluidstate = worldIn.getFluidState(pos.down());
-    	FluidState fluidstate1 = worldIn.getFluidState(pos);
-        return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && (fluidstate.getFluid() == Fluids.WATER || groundstate.getMaterial() == Material.ICE) && fluidstate1.getFluid() == Fluids.EMPTY ;
+    public boolean isValidGround(BlockState groundBlock, IBlockReader worldIn, BlockPos pos) {
+    	ITag<Block> afTags = BlockTags.getCollection().get(new ResourceLocation("arcanefundamentals:wakebloom_growable"));
+        if (afTags != null) {
+            return afTags.contains(groundBlock.getBlock());
+        }
+        return false;
     }
+    
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    	BlockState groundState = worldIn.getBlockState(pos.down());
+    	FluidState cropPosState = worldIn.getFluidState(pos);
+        return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && (this.isValidGround(groundState, worldIn, pos)) && (cropPosState.getFluid() == Fluids.EMPTY);
+    }
+    
+    //not sure if this has any consequences being either enabled or enabled
+    /*@Override
+    protected IItemProvider getSeedsItem() {
+        return RegistryHandler.WAKEBLOOM_SEED.get();
+    }*/
 }

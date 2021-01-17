@@ -21,6 +21,7 @@ build
 eclipse
 run
 libs
+stuff-and-things
 
 # Files from Forge MDK
 forge*changelog.txt
