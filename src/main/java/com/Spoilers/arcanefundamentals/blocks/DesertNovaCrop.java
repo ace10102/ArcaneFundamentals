@@ -1,6 +1,7 @@
 package com.Spoilers.arcanefundamentals.blocks;
 
-import com.Spoilers.arcanefundamentals.util.RegistryHandler;
+import com.Spoilers.arcanefundamentals.items.AFItems;
+//import com.Spoilers.arcanefundamentals.util.RegistryHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -45,6 +46,6 @@ public class DesertNovaCrop extends CropsBlock {
     
     @Override
     protected IItemProvider getSeedsItem() {
-        return RegistryHandler.DESERT_NOVA_SEED.get();
+        return AFItems.DESERT_NOVA_SEED.get();
     }
 }

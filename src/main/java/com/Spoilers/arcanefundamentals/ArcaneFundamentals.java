@@ -3,8 +3,10 @@ package com.Spoilers.arcanefundamentals;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.Spoilers.arcanefundamentals.blocks.AFBlocks;
+import com.Spoilers.arcanefundamentals.items.AFItems;
 import com.Spoilers.arcanefundamentals.rituals.RitualEffectUnspell;
-import com.Spoilers.arcanefundamentals.util.RegistryHandler;
+//import com.Spoilers.arcanefundamentals.util.RegistryHandler;
 import com.ma.api.guidebook.RegisterGuidebooksEvent;
 import com.ma.api.rituals.RitualEffect;
 
@@ -31,8 +33,9 @@ public class ArcaneFundamentals {
 	public ArcaneFundamentals() {
 		
 		modEventBus.addListener(this::doClientStuff);
-
-        RegistryHandler.init();
+		
+		AFItems.ITEMS.register(this.modEventBus);
+        AFBlocks.BLOCKS.register(this.modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -44,17 +47,17 @@ public class ArcaneFundamentals {
     }
 	
 	private void doClientStuff(final FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(RegistryHandler.DESERT_NOVA_CROP.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(RegistryHandler.TARMA_ROOT_CROP.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(RegistryHandler.WAKEBLOOM_CROP.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(RegistryHandler.AUM_CROP.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(RegistryHandler.CERUBLOSSOM_CROP.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.DESERT_NOVA_CROP.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.TARMA_ROOT_CROP.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.WAKEBLOOM_CROP.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.AUM_CROP.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.CERUBLOSSOM_CROP.get(), RenderType.getCutout());
     }
 	
 	public static final ItemGroup TAB = new ItemGroup("arcaneFundamentalsTab") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(RegistryHandler.CERUBLOSSOM_SEED.get());
+            return new ItemStack(AFItems.CERUBLOSSOM_SEED.get());
         }
     };
     

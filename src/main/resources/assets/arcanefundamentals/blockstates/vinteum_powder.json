@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "arcanefundamentals:block/vinteum_powder"
+      },
+      {
+        "model": "arcanefundamentals:block/vinteum_powder",
+        "y": 90
+      },
+      {
+        "model": "arcanefundamentals:block/vinteum_powder",
+        "y": 180
+      },
+      {
+        "model": "arcanefundamentals:block/vinteum_powder",
+        "y": 270
+      }
+    ]
+  }
+}

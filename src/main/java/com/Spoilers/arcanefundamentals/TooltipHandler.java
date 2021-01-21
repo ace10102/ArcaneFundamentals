@@ -37,21 +37,14 @@ public class TooltipHandler {
 	public static void addSpellBookInformation(ItemStack stack, Item roteBook, List<ITextComponent> tooltip) {
 		
 		if (!KeyboardUtil.isCtrl()) {
-        	tooltip.add((ITextComponent)new TranslationTextComponent("Ctrl for usage details").mergeStyle(TextFormatting.AQUA));
+        	tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.allbooksintro").mergeStyle(TextFormatting.AQUA));
         }
 		if (KeyboardUtil.isCtrl()) {
 			if (!(stack.getItem().equals(roteBook))) {
-				tooltip.add((ITextComponent)new TranslationTextComponent("Use: cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on block: cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on air: open book").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Hold Z (default): spell selection").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.spellbook", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
 			}
 			else {
-				tooltip.add((ITextComponent)new TranslationTextComponent("Use: cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use, no spell selected: open book").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on block, spell selected: cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Sneak Use on air, spell selected: open book").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("Hold Z (default): spell selection").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.rotebook", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
 			}
 		}	
 	}

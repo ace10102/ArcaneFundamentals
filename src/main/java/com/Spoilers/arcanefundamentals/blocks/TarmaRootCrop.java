@@ -1,6 +1,7 @@
 package com.Spoilers.arcanefundamentals.blocks;
 
-import com.Spoilers.arcanefundamentals.util.RegistryHandler;
+import com.Spoilers.arcanefundamentals.items.AFItems;
+//import com.Spoilers.arcanefundamentals.util.RegistryHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,6 +27,6 @@ public class TarmaRootCrop extends CropsBlock {
     
     @Override
     protected IItemProvider getSeedsItem() {
-        return RegistryHandler.TARMA_ROOT_SEED.get();
+        return AFItems.TARMA_ROOT_SEED.get();
     }
 }

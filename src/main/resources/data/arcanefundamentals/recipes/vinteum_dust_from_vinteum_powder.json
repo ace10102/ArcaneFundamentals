@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arcanefundamentals:vinteum_powder"
+    }
+  ],
+  "result": {
+    "item": "mana-and-artifice:vinteum_dust",
+    "count": 9
+  }
+}

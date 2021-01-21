@@ -1,6 +1,7 @@
 package com.Spoilers.arcanefundamentals.blocks;
 
-import com.Spoilers.arcanefundamentals.util.RegistryHandler;
+import com.Spoilers.arcanefundamentals.items.AFItems;
+//import com.Spoilers.arcanefundamentals.util.RegistryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
@@ -25,6 +26,6 @@ public class AumCrop extends CropsBlock {
     
     @Override
     protected IItemProvider getSeedsItem() {
-        return RegistryHandler.AUM_SEED.get();
+        return AFItems.AUM_SEED.get();
     }
 }
