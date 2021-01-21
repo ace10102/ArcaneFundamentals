@@ -26,7 +26,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = 'alpha-3'
+version = 'alpha-4'
 group = 'com.Spoilers.arcanefundamentals' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'ArcaneFundamentals'
 
