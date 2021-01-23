@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.Spoilers.arcanefundamentals.blocks.AFBlocks;
+import com.Spoilers.arcanefundamentals.gui.HUDRenderer;
 import com.Spoilers.arcanefundamentals.items.AFItems;
 import com.Spoilers.arcanefundamentals.rituals.RitualEffectUnspell;
 //import com.Spoilers.arcanefundamentals.util.RegistryHandler;
@@ -31,13 +32,14 @@ public class ArcaneFundamentals {
 	final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 	
 	public ArcaneFundamentals() {
-		
-		modEventBus.addListener(this::doClientStuff);
-		
+
 		AFItems.ITEMS.register(this.modEventBus);
         AFBlocks.BLOCKS.register(this.modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(HUDRenderer.class);
+        
+        modEventBus.addListener(this::clientSetupStuff);
 	}
 	
 	@SubscribeEvent
@@ -46,12 +48,14 @@ public class ArcaneFundamentals {
         ArcaneFundamentals.LOGGER.info("Arcane Fundamentals: guide registered");
     }
 	
-	private void doClientStuff(final FMLClientSetupEvent event) {
+	private void clientSetupStuff(final FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(AFBlocks.DESERT_NOVA_CROP.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(AFBlocks.TARMA_ROOT_CROP.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(AFBlocks.WAKEBLOOM_CROP.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(AFBlocks.AUM_CROP.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(AFBlocks.CERUBLOSSOM_CROP.get(), RenderType.getCutout());
+        
+        HUDRenderer.instance = new HUDRenderer();
     }
 	
 	public static final ItemGroup TAB = new ItemGroup("arcaneFundamentalsTab") {
