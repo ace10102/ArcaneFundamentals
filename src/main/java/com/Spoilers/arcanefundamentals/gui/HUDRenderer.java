@@ -2,8 +2,9 @@ package com.Spoilers.arcanefundamentals.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import com.Spoilers.arcanefundamentals.config.AFClientConfig;
+import com.ma.api.ManaAndArtificeMod;
 import com.ma.api.capabilities.IPlayerMagic;
-import com.ma.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -37,13 +38,13 @@ public class HUDRenderer extends AbstractGui {
 	 }
 	 public void renderHUD(MatrixStack matrixStack, int screenWidth, int screenHeight) {
 		 ClientPlayerEntity player = this.mc.player;
-		 IPlayerMagic magic = (IPlayerMagic)player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
+		 IPlayerMagic magic = (IPlayerMagic)player.getCapability(ManaAndArtificeMod.getMagicCapability()).orElse(null);
 		 if (magic == null || !magic.isMagicUnlocked()) {
 			 return;
 		 }
 		 float scaleFactor = 1.0f;
-		 int yPos = 25;
-		 int xPos = 5;
+		 int xPos = AFClientConfig.HUD_X.get();
+		 int yPos = AFClientConfig.HUD_Y.get();
 		 GL11.glPushAttrib(1048575);
 		 GL11.glPushMatrix();
 		 GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
