@@ -2,6 +2,7 @@ package com.Spoilers.arcanefundamentals.items;
 
 import com.Spoilers.arcanefundamentals.ArcaneFundamentals;
 import com.Spoilers.arcanefundamentals.blocks.AFBlocks;
+import com.ma.items.MAItemGroups;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -22,4 +23,5 @@ public class AFItems {
 	public static final RegistryObject<Item> WAKEBLOOM_SEED = ITEMS.register("wakebloom_seed", () -> new WakebloomSeedItem(AFBlocks.WAKEBLOOM_CROP.get(), new Item.Properties().group(ArcaneFundamentals.TAB)));
 		//Other
 	public static final RegistryObject<Item> VINTEUM_POWDER = ITEMS.register("vinteum_powder", () -> new BlockItem(AFBlocks.VINTEUM_POWDER.get(), new Item.Properties().group(ArcaneFundamentals.TAB)));
+	public static final RegistryObject<Item> MANA_MONOCLE = ITEMS.register("mana_monocle", () -> new Item(new Item.Properties().group(ArcaneFundamentals.TAB).maxStackSize(1)));
 }

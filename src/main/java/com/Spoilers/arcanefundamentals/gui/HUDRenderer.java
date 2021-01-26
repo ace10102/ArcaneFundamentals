@@ -1,8 +1,12 @@
 package com.Spoilers.arcanefundamentals.gui;
 
+import java.util.Optional;
+
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.lwjgl.opengl.GL11;
 
 import com.Spoilers.arcanefundamentals.config.AFClientConfig;
+import com.Spoilers.arcanefundamentals.items.AFItems;
 import com.ma.api.ManaAndArtificeMod;
 import com.ma.api.capabilities.IPlayerMagic;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -12,6 +16,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ColorHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,6 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import top.theillusivec4.curios.api.CuriosApi;
 
 public class HUDRenderer extends AbstractGui {
 	
@@ -38,6 +44,10 @@ public class HUDRenderer extends AbstractGui {
 	 }
 	 public void renderHUD(MatrixStack matrixStack, int screenWidth, int screenHeight) {
 		 ClientPlayerEntity player = this.mc.player;
+		 Optional<ImmutableTriple<String, Integer, ItemStack>> equipped = CuriosApi.getCuriosHelper().findEquippedCurio(AFItems.MANA_MONOCLE.get(), player);
+		 if (!equipped.isPresent() || !((ImmutableTriple<String, Integer, ItemStack>)equipped.get()).getRight().getItem().equals(AFItems.MANA_MONOCLE.get())) {
+			 return;
+		 }
 		 IPlayerMagic magic = (IPlayerMagic)player.getCapability(ManaAndArtificeMod.getMagicCapability()).orElse(null);
 		 if (magic == null || !magic.isMagicUnlocked()) {
 			 return;

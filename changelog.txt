@@ -1,6 +1,15 @@
 =========
+Build: 1.16.4-Alpha 5 / Beta 1
+	* Released as Beta just because curseforge doesnt like alpha mods
+	+ Mana Monocle, curio equippable in head slot, displays numerical mana values in a HUD element
+	+ Mana Monocle manaweaving recipe, included under artifice tab of codex
+	+ Command: /afuicfg, for now all it does is take x and y values to move the mana monocle hud element
+	+ Config File currently just stores position of mana monocle hud element
+	+ More spellbook tooltip improvements, apparently they just dont like normal java String syntax
+=========
 Build: 1.16.4-Alpha 4
-
+	+ Vinteum Powder, vinteum dust compression block; effectively blue sand
+	+ Better logic for spellbook tooltips
 =========
 Build: 1.16.4-Alpha 3
 	+ Spellbook usage tooltip details updated

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.Spoilers.arcanefundamentals.blocks.AFBlocks;
+import com.Spoilers.arcanefundamentals.commands.CommandInit;
 import com.Spoilers.arcanefundamentals.config.AFConfigInit;
 import com.Spoilers.arcanefundamentals.gui.HUDRenderer;
 import com.Spoilers.arcanefundamentals.items.AFItems;
@@ -48,6 +49,7 @@ public class ArcaneFundamentals {
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(HUDRenderer.class);
+        MinecraftForge.EVENT_BUS.register(CommandInit.class);
         
         modEventBus.addListener(this::clientSetupStuff);
 	}

@@ -1,0 +1,18 @@
+{
+	"type": "mana-and-artifice:manaweaving-recipe",
+	"output": "arcanefundamentals:mana_monocle",
+	"tier": 2,
+	"items": [		
+		"mana-and-artifice:ritual_focus_lesser",
+		"minecraft:gold_ingot",
+		"mana-and-artifice:vinteum_ingot",
+		"mana-and-artifice:vinteum_ingot",
+		"minecraft:chain",
+		"minecraft:gold_ingot"
+	],
+	"patterns": [
+		"mana-and-artifice:circle",
+		"mana-and-artifice:infinity",
+		"mana-and-artifice:circle"
+	]
+}
