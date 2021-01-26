@@ -9,7 +9,6 @@ import com.Spoilers.arcanefundamentals.config.AFConfigInit;
 import com.Spoilers.arcanefundamentals.gui.HUDRenderer;
 import com.Spoilers.arcanefundamentals.items.AFItems;
 import com.Spoilers.arcanefundamentals.rituals.RitualEffectUnspell;
-//import com.Spoilers.arcanefundamentals.util.RegistryHandler;
 import com.ma.api.guidebook.RegisterGuidebooksEvent;
 import com.ma.api.rituals.RitualEffect;
 
@@ -18,10 +17,12 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -48,10 +49,13 @@ public class ArcaneFundamentals {
         AFBlocks.BLOCKS.register(this.modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(HUDRenderer.class);
-        MinecraftForge.EVENT_BUS.register(CommandInit.class);
         
-        modEventBus.addListener(this::clientSetupStuff);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+        	MinecraftForge.EVENT_BUS.register(HUDRenderer.class);
+        	MinecraftForge.EVENT_BUS.register(CommandInit.class);
+        
+        	modEventBus.addListener(this::clientSetupStuff);
+        	});
 	}
 	
 	@SubscribeEvent
