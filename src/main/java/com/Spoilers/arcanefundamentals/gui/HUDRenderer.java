@@ -64,7 +64,8 @@ public class HUDRenderer extends AbstractGui {
 		 GL11.glPopAttrib();
 	 }
 	 
-	 private void renderManaValues(MatrixStack matrixStack, int xPos, int yPos, IPlayerMagic magic) {
+	 @SuppressWarnings("deprecation")
+	private void renderManaValues(MatrixStack matrixStack, int xPos, int yPos, IPlayerMagic magic) {
 		 if (magic.getMaxMana() > 0.0f) {
 			 float scale = 0.25f;
 			 RenderSystem.pushMatrix();

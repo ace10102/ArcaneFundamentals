@@ -2,7 +2,6 @@ package com.Spoilers.arcanefundamentals.items;
 
 import com.Spoilers.arcanefundamentals.ArcaneFundamentals;
 import com.Spoilers.arcanefundamentals.blocks.AFBlocks;
-import com.ma.items.MAItemGroups;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
