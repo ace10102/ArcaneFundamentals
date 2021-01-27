@@ -13,6 +13,11 @@
   "arcanefundamentals:rituals/unspell":"Ritual of Unspelling",
   
   "tooltip.allbooksintro":"Ctrl for usage details",
-  "tooltip.spellbook":"Use: cast\nSneak Use on block: cast\nSneak Use on air: open book\n%s: spell selection",
-  "tooltip.rotebook":"Use: cast\nSneak Use, no spell selected: open book\nSneak Use on block, spell selected: cast\nSneak Use on air, spell selected: open book\n%s: spell selection"
+  "tooltip.standard_cast":"Use: cast",
+  "tooltip.spellbook1":"Sneak Use on block: cast",
+  "tooltip.spellbook2":"Sneak Use on air: open book",
+  "tooltip.rotebook1":"Sneak Use, no spell selected: open book",
+  "tooltip.rotebook2":"Sneak Use on block, spell selected: cast",
+  "tooltip.rotebook3":"Sneak Use on air, spell selected: open book",
+  "tooltip.keybind":"%s: spell selection"
 }

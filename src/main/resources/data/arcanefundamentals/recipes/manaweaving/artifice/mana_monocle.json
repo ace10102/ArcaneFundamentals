@@ -12,7 +12,8 @@
 	],
 	"patterns": [
 		"mana-and-artifice:circle",
-		"mana-and-artifice:infinity",
+		"mana-and-artifice:triangle",
+		"mana-and-artifice:inverted_triangle",
 		"mana-and-artifice:circle"
 	]
 }

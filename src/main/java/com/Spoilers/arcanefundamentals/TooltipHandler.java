@@ -41,10 +41,17 @@ public class TooltipHandler {
         }
 		if (KeyboardUtil.isCtrl()) {
 			if (!(stack.getItem().equals(roteBook))) {
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.spellbook", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.standard_cast").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.spellbook1").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.spellbook2").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
 			}
 			else {
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.rotebook", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.standard_cast").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.rotebook1").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.rotebook2").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.rotebook3").mergeStyle(TextFormatting.AQUA));
+				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
 			}
 		}	
 	}

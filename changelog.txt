@@ -1,4 +1,9 @@
 =========
+Build: 1.16.4-Alpha 5.2 / Beta 1.2
+	+ Fixed Mana Monocle recipe not being craftable at it's intended unlock tier
+	+ All crops now have valid ground configurable via tags, however only wakebloom can be placed directly on fluids
+	+ More spellbook tooltip improvements, apparently they just dont like normal java String syntax
+=========
 Build: 1.16.4-Alpha 5.1 / Beta 1.1
 	+ Fixed a crash on servers due to the mana monocle because I guess it wasnt really ready for a release.
 =========
