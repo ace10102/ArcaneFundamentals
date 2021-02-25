@@ -70,7 +70,7 @@ An addon for Mana&Artifice which adds some basic features to make the mod a bit 
 [[dependencies.arcanefundamentals]]
 	modId="mana-and-artifice"
 	mandatory=true
-	versionRange="[1.2.1.5,)"
+	versionRange="[1.3.0.0,)"
 	ordering="NONE"
 	side="BOTH"
 	

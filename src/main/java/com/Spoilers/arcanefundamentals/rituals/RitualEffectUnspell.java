@@ -1,5 +1,6 @@
 package com.Spoilers.arcanefundamentals.rituals;
 
+//import java.lang.reflect.Method;
 import java.util.Collections;
 
 import com.ma.api.ManaAndArtificeMod;
@@ -8,6 +9,7 @@ import com.ma.api.rituals.IRitualContext;
 import com.ma.api.rituals.RitualEffect;
 import com.ma.api.sound.SFX;
 /*import com.ma.entities.utility.EntityPresentItem;*/
+import com.ma.spells.crafting.SpellRecipe;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
@@ -17,6 +19,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.Explosion;
+//import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class RitualEffectUnspell extends RitualEffect {
@@ -30,11 +33,15 @@ public class RitualEffectUnspell extends RitualEffect {
         ItemStack spellItem = ItemStack.EMPTY;
         CompoundNBT spellData = null;
         for (ItemStack stack : context.getCollectedReagents()) {
-            if (!stack.getTag().contains("ritual_reagent_data")) continue;
+            if (stack.getTag() == null || !stack.getTag().contains("spell")) continue;
             spellItem = stack;
-            spellData = stack.getOrCreateChildTag("ritual_reagent_data");
             break;
         }
+        if (!spellItem.getTag().contains("ritual_reagent_data")) {
+        	SpellRecipe recipe = SpellRecipe.fromNBT(spellItem.getOrCreateChildTag("spell"));
+        	recipe.writeRecipeForRitual(context.getWorld(), spellItem.getOrCreateTag());
+        }
+        spellData = spellItem.getOrCreateChildTag("ritual_reagent_data");
         if (spellItem == null || spellData == null) {
             return false;
         }
@@ -79,10 +86,15 @@ public class RitualEffectUnspell extends RitualEffect {
 
     @Override
     protected boolean modifyRitualReagentsAndPatterns(ItemStack dataStack, IRitualContext context) {
-    	System.out.println(dataStack);
-        if (!dataStack.getTag().contains("ritual_reagent_data")) {
+        if (dataStack.getItem() != ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:spell"))) {
             return false;
         }
+        
+        if (dataStack.getTag() != null && dataStack.getTag().contains("spell") && !dataStack.getTag().contains("ritual_reagent_data")) {
+        	SpellRecipe recipe = SpellRecipe.fromNBT(dataStack.getChildTag("spell"));
+        	recipe.writeRecipeForRitual(context.getWorld(), dataStack.getOrCreateTag());
+        }
+        
         context.replaceReagents(new ResourceLocation("arcanefundamentals:dynamic_spell"), reduntantlyGetSpellResourceLocationAsAList());
         context.replacePatterns(getInvertedWeavePatterns(dataStack));
         return true;
@@ -116,5 +128,9 @@ public class RitualEffectUnspell extends RitualEffect {
         }
         return resourceLocations;
     }
+    /*private void testreflect(World world, CompoundNBT spellNBT) throws ClassNotFoundException, NoSuchMethodException, SecurityException {
+    	Class<?> spellRecipe = Class.forName("com.ma.spells.crafting.SpellRecipe");
+    	
+    	Method testMethod = spellRecipe.getDeclaredMethod("writeRecipeForRitual", World.class, CompoundNBT.class);
+    }*/
 }
-

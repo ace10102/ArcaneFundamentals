@@ -28,7 +28,7 @@ public class TooltipHandler {
 		
 		ItemStack hoveredItem = event.getItemStack();
 		
-		if (hoveredItem.getItem().equals(checkSpellBook) || hoveredItem.getItem().equals(checkGrimoire) || hoveredItem.getItem().equals(checkRoteBook)) {
+		if (hoveredItem.getItem() == checkSpellBook || hoveredItem.getItem() == checkGrimoire || hoveredItem.getItem() == checkRoteBook) {
 			
 			addSpellBookInformation(hoveredItem, checkRoteBook, event.getToolTip());	
 		}
@@ -37,21 +37,21 @@ public class TooltipHandler {
 	public static void addSpellBookInformation(ItemStack stack, Item roteBook, List<ITextComponent> tooltip) {
 		
 		if (!KeyboardUtil.isCtrl()) {
-        	tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.allbooksintro").mergeStyle(TextFormatting.AQUA));
+        	tooltip.add(new TranslationTextComponent("tooltip.allbooksintro").mergeStyle(TextFormatting.AQUA));
         }
 		if (KeyboardUtil.isCtrl()) {
-			if (!(stack.getItem().equals(roteBook))) {
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.standard_cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.spellbook1").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.spellbook2").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
+			if (!(stack.getItem() == roteBook)) {
+				tooltip.add(new TranslationTextComponent("tooltip.standard_cast").mergeStyle(TextFormatting.AQUA));
+				tooltip.add(new TranslationTextComponent("tooltip.spellbook1").mergeStyle(TextFormatting.AQUA));
+				tooltip.add(new TranslationTextComponent("tooltip.spellbook2").mergeStyle(TextFormatting.AQUA));
+				tooltip.add(new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
 			}
 			else {
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.standard_cast").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.rotebook1").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.rotebook2").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.rotebook3").mergeStyle(TextFormatting.AQUA));
-				tooltip.add((ITextComponent)new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
+				tooltip.add(new TranslationTextComponent("tooltip.standard_cast").mergeStyle(TextFormatting.AQUA));
+				tooltip.add(new TranslationTextComponent("tooltip.rotebook1").mergeStyle(TextFormatting.AQUA));
+				tooltip.add(new TranslationTextComponent("tooltip.rotebook2").mergeStyle(TextFormatting.AQUA));
+				tooltip.add(new TranslationTextComponent("tooltip.rotebook3").mergeStyle(TextFormatting.AQUA));
+				tooltip.add(new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
 			}
 		}	
 	}
