@@ -1,4 +1,13 @@
 =========
+Build: 1.16.5-Alpha 6 / Beta 2
+	* Now Building against 1.16.5 - Mana & Artifice 1.3.0.5
+	* Although Redundant, the Mana Monocle will continue to show mana numbers, until I have time to implement the new function I want to give it
+	* Constructs are still behaving kind of strangely with desert nova and wakebloom seeds- just tag them farmland plantable as workaround
+	+ Fixed Ritual of Unspelling crash with non-creative-crafted spells, intentionally does not return complexity reagents 
+	+ Added loot table to vinteum powder so it drops itself when broken, would think I'd have noticed that sooner
+	+ Added '[AF]' tag to codex entries to distinguish them from base Mana & Artifice entries
+	- Removed some Spellbook Tooltips, Mana & Artifice has its own now
+=========
 Build: 1.16.4-Alpha 5.2 / Beta 1.2
 	+ Fixed Mana Monocle recipe not being craftable at it's intended unlock tier
 	+ All crops now have valid ground configurable via tags, however only wakebloom can be placed directly on fluids
