@@ -13,5 +13,6 @@
   "arcanefundamentals:rituals/unspell":"Ritual of Unspelling",
   
   "tooltip.allbooksintro":"Ctrl for usage details",
+  "tooltip.alterbook" : "%s to choose a modifier",
   "tooltip.keybind":"%s for spell selection"
 }

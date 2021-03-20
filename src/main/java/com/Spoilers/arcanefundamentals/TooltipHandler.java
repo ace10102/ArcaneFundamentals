@@ -25,21 +25,27 @@ public class TooltipHandler {
 		final Item checkSpellBook = ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:spell_book"));
 		final Item checkGrimoire = ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:grimoire"));
 		final Item checkRoteBook = ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:book_of_rote"));
+		final Item checkAlterBook = ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:modifier_book"));
 		
-		ItemStack hoveredItem = event.getItemStack();
+		ItemStack hoveredStack = event.getItemStack();
+		Item hoveredItem = hoveredStack.getItem();
 		
-		if (hoveredItem.getItem() == checkSpellBook || hoveredItem.getItem() == checkGrimoire || hoveredItem.getItem() == checkRoteBook) {
+		if (hoveredItem == checkSpellBook || hoveredItem == checkGrimoire || hoveredItem  == checkRoteBook || hoveredItem == checkAlterBook) {
 			
-			addSpellBookInformation(hoveredItem, event.getToolTip());	
+			addSpellBookInformation(hoveredItem, event.getToolTip(), checkAlterBook);	
 		}
 	}
 	
-	public static void addSpellBookInformation(ItemStack stack, List<ITextComponent> tooltip) {
-		
+	public static void addSpellBookInformation(Item item, List<ITextComponent> tooltip, Item checkAlterBook) {
+		if (item == checkAlterBook) {
+			tooltip.add(new TranslationTextComponent("tooltip.alterbook", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));	
+		}
+		else {
+			tooltip.add(new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));	
+		}
 		/*if (!KeyboardUtil.isCtrl()) {
         	tooltip.add(new TranslationTextComponent("tooltip.allbooksintro").mergeStyle(TextFormatting.AQUA));
         }*/
-		tooltip.add(new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));
 	}
 }
 
