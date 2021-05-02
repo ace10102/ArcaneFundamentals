@@ -7,8 +7,11 @@ import com.Spoilers.arcanefundamentals.blocks.AFBlocks;
 import com.Spoilers.arcanefundamentals.commands.CommandInit;
 import com.Spoilers.arcanefundamentals.config.AFConfigInit;
 import com.Spoilers.arcanefundamentals.gui.HUDRenderer;
+import com.Spoilers.arcanefundamentals.gui.MonocleRenderer;
+import com.Spoilers.arcanefundamentals.gui.TooltipHandler;
 import com.Spoilers.arcanefundamentals.items.AFItems;
 import com.Spoilers.arcanefundamentals.rituals.RitualEffectUnspell;
+import com.Spoilers.arcanefundamentals.util.WandCodexAlternate;
 import com.ma.api.guidebook.RegisterGuidebooksEvent;
 import com.ma.api.rituals.RitualEffect;
 
@@ -47,13 +50,17 @@ public class ArcaneFundamentals {
 		
 		AFItems.ITEMS.register(this.modEventBus);
         AFBlocks.BLOCKS.register(this.modEventBus);
-
+        
+        MinecraftForge.EVENT_BUS.register(new WandCodexAlternate());
         MinecraftForge.EVENT_BUS.register(this);
         
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-        	MinecraftForge.EVENT_BUS.register(HUDRenderer.class);
         	MinecraftForge.EVENT_BUS.register(CommandInit.class);
-        
+        	
+        	MinecraftForge.EVENT_BUS.register(new HUDRenderer());
+        	MinecraftForge.EVENT_BUS.register(new MonocleRenderer());
+        	MinecraftForge.EVENT_BUS.register(new TooltipHandler());
+        	
         	modEventBus.addListener(this::clientSetupStuff);
         	});
 	}
@@ -70,8 +77,6 @@ public class ArcaneFundamentals {
         RenderTypeLookup.setRenderLayer(AFBlocks.WAKEBLOOM_CROP.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(AFBlocks.AUM_CROP.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(AFBlocks.CERUBLOSSOM_CROP.get(), RenderType.getCutout());
-        
-        HUDRenderer.instance = new HUDRenderer();
     }
 	
 	public static final ItemGroup TAB = new ItemGroup("arcaneFundamentalsTab") {

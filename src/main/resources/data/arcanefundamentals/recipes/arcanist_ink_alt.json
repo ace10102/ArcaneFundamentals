@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mana-and-artifice:purified_vinteum_dust"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "tag": "mana-and-artifice:ma_flowers"
+    },
+    {
+      "tag": "minecraft:coals"
+    }
+  ],
+  "result": {
+    "item": "mana-and-artifice:arcanist_ink"
+  }
+}

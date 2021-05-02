@@ -19,6 +19,7 @@ public class AFConfigInit {
 	
 	static {
 		AFClientConfig.init(CLIENT_BUILDER);
+		AFServerConfig.init(SERVER_BUILDER);
 		
 		SERVER_CONFIG = SERVER_BUILDER.build();
 		CLIENT_CONFIG = CLIENT_BUILDER.build();
