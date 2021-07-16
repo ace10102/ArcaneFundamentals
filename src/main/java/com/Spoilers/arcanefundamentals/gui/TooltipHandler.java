@@ -14,7 +14,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class TooltipHandler {
@@ -42,14 +41,14 @@ public class TooltipHandler {
 	
 	public void addSpellBookTooltip(List<ITextComponent> tooltip) {
 		
-		tooltip.add(new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));	
+		tooltip.add(new TranslationTextComponent("tooltip.keybind", KeyboardUtil.getSpellKey()).withStyle(TextFormatting.AQUA));	
 		/*if (!KeyboardUtil.isCtrl()) {
         	tooltip.add(new TranslationTextComponent("tooltip.allbooksintro").mergeStyle(TextFormatting.AQUA));
         }*/
 	}
 	public void addAlterBookTooltip(List<ITextComponent> tooltip) {
 		
-		tooltip.add(new TranslationTextComponent("tooltip.alterbook", KeyboardUtil.getSpellKey()).mergeStyle(TextFormatting.AQUA));	
+		tooltip.add(new TranslationTextComponent("tooltip.alterbook", KeyboardUtil.getSpellKey()).withStyle(TextFormatting.AQUA));	
 	}
 }
 

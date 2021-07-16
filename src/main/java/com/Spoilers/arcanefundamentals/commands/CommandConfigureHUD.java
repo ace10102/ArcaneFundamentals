@@ -12,7 +12,7 @@ public class CommandConfigureHUD {
 	
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal("afuicfg")
-        		.requires(commandSource -> commandSource.hasPermissionLevel(0))
+        		.requires(commandSource -> commandSource.hasPermission(0))
         		.then(Commands.argument("xpos", IntegerArgumentType.integer(0, 720))
         		.then(Commands.argument("ypos", IntegerArgumentType.integer(0, 420))
         		.executes(CommandConfigureHUD::changeHudPos))));

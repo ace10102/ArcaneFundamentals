@@ -23,9 +23,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SpellContext {
-	public final IRecipeType shapeRecipe = Registry.RECIPE_TYPE.getOrDefault(new ResourceLocation("mana-and-artifice", "shape-recipe-type"));
-	public final IRecipeType componentRecipe = Registry.RECIPE_TYPE.getOrDefault(new ResourceLocation("mana-and-artifice", "component-recipe-type"));
-	public final IRecipeType modifierRecipe = Registry.RECIPE_TYPE.getOrDefault(new ResourceLocation("mana-and-artifice", "modifier-recipe-type"));
+	public final IRecipeType shapeRecipe = Registry.RECIPE_TYPE.get(new ResourceLocation("mana-and-artifice", "shape-recipe-type"));
+	public final IRecipeType componentRecipe = Registry.RECIPE_TYPE.get(new ResourceLocation("mana-and-artifice", "component-recipe-type"));
+	public final IRecipeType modifierRecipe = Registry.RECIPE_TYPE.get(new ResourceLocation("mana-and-artifice", "modifier-recipe-type"));
 	private static final ResourceLocation Minor_Rloc = (new ResourceLocation("mana-and-artifice","ritual_focus_minor"));
     private static final ResourceLocation Lesser_Rloc = (new ResourceLocation("mana-and-artifice","ritual_focus_lesser"));
     private static final ResourceLocation Greater_Rloc = (new ResourceLocation("mana-and-artifice","ritual_focus_greater"));
@@ -126,7 +126,7 @@ public class SpellContext {
 	
 	public <T extends SpecialRecipe> List<ResourceLocation> getRecipeItems(World world, ResourceLocation spellPart, IRecipeType<T> type) {
 		NonNullList<ResourceLocation> itemRlocsForPart = NonNullList.create();
-		List<T> recipes = world.getRecipeManager().getRecipesForType(type);
+		List<T> recipes = world.getRecipeManager().getAllRecipesFor(type);
 		for (T recipeTest : recipes) {
 			if (recipeTest.getId().equals(spellPart) && recipeTest instanceof IItemAndPatternRecipe) {
 				itemRlocsForPart.addAll(Arrays.asList(((IItemAndPatternRecipe)recipeTest).getRequiredItems()));
@@ -138,7 +138,7 @@ public class SpellContext {
 	
 	public <T extends SpecialRecipe> List<ResourceLocation> getRecipePatterns(World world, ResourceLocation spellPart, IRecipeType<T> type) {
 		NonNullList<ResourceLocation> patternRlocsForPart = NonNullList.create();
-		List<T> recipes = world.getRecipeManager().getRecipesForType(type);
+		List<T> recipes = world.getRecipeManager().getAllRecipesFor(type);
 		for (T recipeTest : recipes) {
 			if (recipeTest.getId().equals(spellPart) && recipeTest instanceof IItemAndPatternRecipe) {
 				patternRlocsForPart.addAll(Arrays.asList(((IItemAndPatternRecipe)recipeTest).getRequiredPatterns()));
@@ -150,7 +150,7 @@ public class SpellContext {
 	
 	public <T extends SpecialRecipe> List<ResourceLocation> getRecipesItems(World world, List<ResourceLocation> spellParts, IRecipeType<T> type) {
 		NonNullList<ResourceLocation> itemsForParts = NonNullList.create();
-		List<T> recipes = world.getRecipeManager().getRecipesForType(type);
+		List<T> recipes = world.getRecipeManager().getAllRecipesFor(type);
 		for (ResourceLocation spellIterate : spellParts) {
 			for (T recipeTest : recipes) {
 				if (recipeTest.getId().equals(spellIterate) && recipeTest instanceof IItemAndPatternRecipe) {
@@ -164,7 +164,7 @@ public class SpellContext {
 	
 	public <T extends SpecialRecipe> List<ResourceLocation> getRecipesPatterns(World world, List<ResourceLocation> spellParts, IRecipeType<T> type) {
 		NonNullList<ResourceLocation> patternsForParts = NonNullList.create();
-		List<T> recipes = world.getRecipeManager().getRecipesForType(type);
+		List<T> recipes = world.getRecipeManager().getAllRecipesFor(type);
 		for (ResourceLocation spellIterate : spellParts) {
 			for (T recipeTest : recipes) {
 				if (recipeTest.getId().equals(spellIterate) && recipeTest instanceof IItemAndPatternRecipe) {

@@ -34,19 +34,19 @@ public class WandCodexAlternate {
 		Item usedItem = event.getItemStack().getItem();
 		
 		if (AFServerConfig.enableCodexAlternate.get() && (usedItem == checkWand || usedItem == checkIWand) && 
-				event.getTarget() instanceof ItemFrameEntity && ((ItemFrameEntity)event.getTarget()).getDisplayedItem().getItem() == Items.BOOK && 
-				world.getBlockState(event.getTarget().getPosition()).getBlock() == flower) {
+				event.getTarget() instanceof ItemFrameEntity && ((ItemFrameEntity)event.getTarget()).getItem().getItem() == Items.BOOK && 
+				world.getBlockState(event.getTarget().blockPosition()).getBlock() == flower) {
 			
-			if (!world.isRemote) {
+			if (!world.isClientSide) {
 				
-				world.destroyBlock(event.getTarget().getPosition(), false, event.getPlayer());
-				((ItemFrameEntity)event.getTarget()).setDisplayedItem(new ItemStack(codex));
+				world.destroyBlock(event.getTarget().blockPosition(), false, event.getPlayer());
+				((ItemFrameEntity)event.getTarget()).setItem(new ItemStack(codex));
 				
 				event.setCanceled(true);
 			}
 			
-			if (world.isRemote) {
-				spawnCodexCreationParticles(world, event.getTarget().getPosition());
+			if (world.isClientSide) {
+				spawnCodexCreationParticles(world, event.getTarget().blockPosition());
 				event.setCancellationResult(ActionResultType.SUCCESS);
 				event.setCanceled(true);
 			}
@@ -55,20 +55,20 @@ public class WandCodexAlternate {
 	
 	public void spawnCodexCreationParticles(World world, BlockPos pos) {
         int i;
-        if (!world.isRemote) {
+        if (!world.isClientSide) {
             return;
         }
         Random rnd = new Random();
         Vector3f srcPoint = new Vector3f(pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f);
         for (i = 0; i < 150; ++i) {
-            world.addParticle(ParticleInit.BLUE_SPARKLE_GRAVITY.get(), srcPoint.getX(), srcPoint.getY(), srcPoint.getZ(), -0.5 + rnd.nextFloat(), 0.04, -0.5 + rnd.nextFloat());
+            world.addParticle(ParticleInit.BLUE_SPARKLE_GRAVITY.get(), srcPoint.x(), srcPoint.y(), srcPoint.z(), -0.5 + rnd.nextFloat(), 0.04, -0.5 + rnd.nextFloat());
         }
         for (i = 0; i < 75; ++i) {
-            world.addParticle(ParticleTypes.ENCHANT, srcPoint.getX(), srcPoint.getY(), srcPoint.getZ(), -2.5 + (rnd.nextFloat() * 5), 0.5, -2.5 + (rnd.nextFloat() * 5));
+            world.addParticle(ParticleTypes.ENCHANT, srcPoint.x(), srcPoint.y(), srcPoint.z(), -2.5 + (rnd.nextFloat() * 5), 0.5, -2.5 + (rnd.nextFloat() * 5));
         }
         for (i = 0; i < 50; ++i) {
-            Vector3f lightPoint = new Vector3f(srcPoint.getX() - 0.2f + rnd.nextFloat() * 0.4f, srcPoint.getY() - 0.4f, srcPoint.getZ() - 0.2f + rnd.nextFloat() * 0.4f);
-            world.addParticle(ParticleInit.LIGHT_VELOCITY.get(), lightPoint.getX(), lightPoint.getY(), lightPoint.getZ(), 0, 0.02, 0);
+            Vector3f lightPoint = new Vector3f(srcPoint.x() - 0.2f + rnd.nextFloat() * 0.4f, srcPoint.y() - 0.4f, srcPoint.z() - 0.2f + rnd.nextFloat() * 0.4f);
+            world.addParticle(ParticleInit.LIGHT_VELOCITY.get(), lightPoint.x(), lightPoint.y(), lightPoint.z(), 0, 0.02, 0);
         }
     }
 }

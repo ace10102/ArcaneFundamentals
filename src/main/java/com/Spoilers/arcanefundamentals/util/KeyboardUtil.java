@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class KeyboardUtil {
 	
-	private static final long MINECRAFT_WINDOW = Minecraft.getInstance().getMainWindow().getHandle();
+	private static final long MINECRAFT_WINDOW = Minecraft.getInstance().getWindow().getWindow();
 	
 	@OnlyIn(Dist.CLIENT)
 	public static boolean isShift() {
@@ -23,9 +23,9 @@ public class KeyboardUtil {
 	
 	public static String getSpellKey() {
 		String spellKeyValue = null;
-		for (KeyBinding iterKey : Minecraft.getInstance().gameSettings.keyBindings) {
-			if (iterKey.getKeyDescription().equals("key.spellbookopen")) {
-				spellKeyValue = KeyBinding.getDisplayString(iterKey.getKeyDescription()).get().getString();
+		for (KeyBinding iterKey : Minecraft.getInstance().options.keyMappings) {
+			if (iterKey.getName().equals("key.spellbookopen")) {
+				spellKeyValue = KeyBinding.createNameSupplier(iterKey.getName()).get().getString();
 			}
 			else continue;
 		}

@@ -15,14 +15,14 @@ public class AFRenderType extends RenderState {
 	
 	public static final ResourceLocation MANA_BAR_TEXTURE = new ResourceLocation(ArcaneFundamentals.MOD_ID, "textures/gui/mana_value_bar.png");
 
-	public static final VertexFormat POSITION_TEX_COLOR_NORMAL_LIGHTMAP = new VertexFormat(ImmutableList.<VertexFormatElement>builder().add(POSITION_3F).add(TEX_2F).add(COLOR_4UB).add(NORMAL_3B).add(TEX_2SB).add(PADDING_1B).build());
+	public static final VertexFormat POSITION_TEX_COLOR_NORMAL_LIGHTMAP = new VertexFormat(ImmutableList.<VertexFormatElement>builder().add(ELEMENT_POSITION).add(ELEMENT_UV0).add(ELEMENT_COLOR).add(ELEMENT_NORMAL).add(ELEMENT_UV2).add(ELEMENT_PADDING).build());
 	
 	public AFRenderType(String nameIn, Runnable setupTaskIn, Runnable clearTaskIn) {
 		super(nameIn, setupTaskIn, clearTaskIn);
 	}
 	
 	public static RenderType getManaBarType(ResourceLocation location) {
-		RenderType.State renderTypeState = RenderType.State.getBuilder().texture(new TextureState(location, false, false)).transparency(TRANSLUCENT_TRANSPARENCY).diffuseLighting(RenderState.DIFFUSE_LIGHTING_DISABLED).lightmap(LIGHTMAP_ENABLED).build(true);
-		return RenderType.makeType("af_mana_bar", POSITION_TEX_COLOR_NORMAL_LIGHTMAP, 7, 256, true, true, renderTypeState);
+		RenderType.State renderTypeState = RenderType.State.builder().setTextureState(new TextureState(location, false, false)).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setDiffuseLightingState(RenderState.NO_DIFFUSE_LIGHTING).setLightmapState(LIGHTMAP).createCompositeState(true);
+		return RenderType.create("af_mana_bar", POSITION_TEX_COLOR_NORMAL_LIGHTMAP, 7, 256, true, true, renderTypeState);
 	}
 }

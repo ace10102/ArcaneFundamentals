@@ -39,7 +39,7 @@ public class HUDRenderer extends AbstractGui {
 			 return;
 		 }
 		 if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-			 renderHUD(event.getMatrixStack(), event.getWindow().getScaledWidth(), event.getWindow().getScaledHeight());	 
+			 renderHUD(event.getMatrixStack(), event.getWindow().getGuiScaledWidth(), event.getWindow().getGuiScaledHeight());	 
 		 }
 	 }
 	 
@@ -59,15 +59,15 @@ public class HUDRenderer extends AbstractGui {
 		 GL11.glPushAttrib(1048575);
 		 GL11.glPushMatrix();
 		 GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-		 mc.getTextureManager().bindTexture(new ResourceLocation(ArcaneFundamentals.MOD_ID, "textures/gui/mana_value_bar.png"));
+		 mc.getTextureManager().bind(new ResourceLocation(ArcaneFundamentals.MOD_ID, "textures/gui/mana_value_bar.png"));
 		 renderManaValues(matrixStack, xPos, yPos, magic);
 		 GL11.glPopMatrix();
 		 GL11.glPopAttrib();
 	 }
 	 
-	 @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	private void renderManaValues(MatrixStack matrixStack, int xPos, int yPos, IPlayerMagic magic) {
-		 if (magic.getMaxMana() > 0.0f) {
+		 if (magic.getCastingResource().getMaxAmount() > 0.0f) {
 			 float scale = 0.25f;
 			 RenderSystem.pushMatrix();
 			 RenderSystem.scalef(scale, scale/4, scale);
@@ -75,12 +75,12 @@ public class HUDRenderer extends AbstractGui {
 			 RenderSystem.popMatrix();
 			 xPos += 11;
 			 yPos += 4;
-			 FontRenderer fontRender = Minecraft.getInstance().fontRenderer;
-			 String manaDisplay = (int)magic.getMana() + "/" + (int)magic.getMaxMana();
-			 if (mc.getForceUnicodeFont()) {
-				 fontRender.drawString(matrixStack, manaDisplay, ((float)xPos + 7.5f), ((float)yPos - 0.5f), ColorHelper.PackedColor.packColor(255, 100, 0, 100));
+			 FontRenderer fontRender = Minecraft.getInstance().font;
+			 String manaDisplay = (int)magic.getCastingResource().getAmount() + "/" + (int)magic.getCastingResource().getMaxAmount();
+			 if (mc.isEnforceUnicode()) {
+				 fontRender.draw(matrixStack, manaDisplay, ((float)xPos + 7.5f), ((float)yPos - 0.5f), ColorHelper.PackedColor.color(255, 100, 0, 100));
 			 } else {
-				 fontRender.drawString(matrixStack, manaDisplay, ((float)xPos + 0.5f), ((float)yPos + 0.5f), ColorHelper.PackedColor.packColor(255, 100, 0, 100));
+				 fontRender.draw(matrixStack, manaDisplay, ((float)xPos + 0.5f), ((float)yPos + 0.5f), ColorHelper.PackedColor.color(255, 100, 0, 100));
 			 }
 		 }
 	 }

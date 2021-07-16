@@ -43,7 +43,7 @@ public class MonocleRenderer {
 	@SubscribeEvent
 	public void onRenderWorldLast(RenderWorldLastEvent event) {
 		
-		if (!Minecraft.isGuiEnabled())
+		if (!Minecraft.renderNames())
 			return;
 		
 		ClientPlayerEntity player = mc.player;
@@ -56,24 +56,24 @@ public class MonocleRenderer {
 			return;
 		}
 		
-		ActiveRenderInfo renderInfo = mc.gameRenderer.getActiveRenderInfo();
+		ActiveRenderInfo renderInfo = mc.gameRenderer.getMainCamera();
 		MatrixStack matrixStack = event.getMatrixStack();
 		float partialTicks = event.getPartialTicks();
-		Entity cameraEntity = renderInfo.getRenderViewEntity() != null ? renderInfo.getRenderViewEntity() : mc.player;
+		Entity cameraEntity = renderInfo.getEntity() != null ? renderInfo.getEntity() : mc.player;
 		
 		/*Entity focused = getEntityLookedAt(mc.player);
 		if (focused != null && focused instanceof LivingEntity && focused.isAlive()) {
 			renderHealthBar((LivingEntity) focused, mc, matrixStack, partialTicks, renderInfo, cameraEntity);
 		}*/
 		
-		Vector3d cameraPos = renderInfo.getProjectedView();
-		final ClippingHelper clippingHelper = new ClippingHelper(matrixStack.getLast().getMatrix(), event.getProjectionMatrix());
-		clippingHelper.setCameraPosition(cameraPos.getX(), cameraPos.getY(), cameraPos.getZ());
+		Vector3d cameraPos = renderInfo.getPosition();
+		final ClippingHelper clippingHelper = new ClippingHelper(matrixStack.last().pose(), event.getProjectionMatrix());
+		clippingHelper.prepare(cameraPos.x(), cameraPos.y(), cameraPos.z());
 
-		ClientWorld client = mc.world;
+		ClientWorld client = mc.level;
 		if (client != null) {
-			for (Entity entity : client.getAllEntities()) {
-				if (entity != null && entity instanceof LivingEntity && entity != cameraEntity && entity.isAlive() && entity.getRecursivePassengers().isEmpty() && entity.isInRangeToRender3d(cameraPos.getX(), cameraPos.getY(), cameraPos.getZ()) && (entity.ignoreFrustumCheck || clippingHelper.isBoundingBoxInFrustum(entity.getBoundingBox()))) {
+			for (Entity entity : client.entitiesForRendering()) {
+				if (entity != null && entity instanceof LivingEntity && entity != cameraEntity && entity.isAlive() && entity.getIndirectPassengers().isEmpty() && entity.shouldRender(cameraPos.x(), cameraPos.y(), cameraPos.z()) && (entity.noCulling || clippingHelper.isVisible(entity.getBoundingBox()))) {
 					renderHealthBar((LivingEntity) entity, mc, matrixStack, partialTicks, renderInfo, cameraEntity);
 					//System.out.println(entity.getEntityString());
 				}
@@ -87,12 +87,12 @@ public class MonocleRenderer {
 		LivingEntity entity = renderedEntity;
 		ridingStack.push(entity);
 
-		while (entity.getRidingEntity() != null && entity.getRidingEntity() instanceof LivingEntity) {
-			entity = (LivingEntity) entity.getRidingEntity();
+		while (entity.getVehicle() != null && entity.getVehicle() instanceof LivingEntity) {
+			entity = (LivingEntity) entity.getVehicle();
 			ridingStack.push(entity);
 		}
 
-		matrixStack.push();
+		matrixStack.pushPose();
 		while (!ridingStack.isEmpty()) {
 			entity = ridingStack.pop();
 			//boolean boss = !entity.isNonBoss();
@@ -103,8 +103,8 @@ public class MonocleRenderer {
 
 			processing:
 			{
-				float distance = renderedEntity.getDistance(viewPoint);
-				if (distance > 16 || !renderedEntity.canEntityBeSeen(viewPoint) || entity.isInvisible())
+				float distance = renderedEntity.distanceTo(viewPoint);
+				if (distance > 16 || !renderedEntity.canSee(viewPoint) || entity.isInvisible())
 					break processing;
 				//if (!NeatConfig.showOnBosses && !boss)
 					//break processing;
@@ -115,31 +115,31 @@ public class MonocleRenderer {
 				//if (!NeatConfig.showFullHealth && entity.getHealth() == entity.getMaxHealth())
 					//break processing;
 
-				double x = renderedEntity.prevPosX + (renderedEntity.getPosX() - renderedEntity.prevPosX) * partialTicks;
-				double y = renderedEntity.prevPosY + (renderedEntity.getPosY() - renderedEntity.prevPosY) * partialTicks;
-				double z = renderedEntity.prevPosZ + (renderedEntity.getPosZ() - renderedEntity.prevPosZ) * partialTicks;
+				double x = renderedEntity.xo + (renderedEntity.getX() - renderedEntity.xo) * partialTicks;
+				double y = renderedEntity.yo + (renderedEntity.getY() - renderedEntity.yo) * partialTicks;
+				double z = renderedEntity.zo + (renderedEntity.getZ() - renderedEntity.zo) * partialTicks;
 
-				EntityRendererManager renderManager = Minecraft.getInstance().getRenderManager();
-				Vector3d renderPos = renderManager.info.getProjectedView();
+				EntityRendererManager renderManager = Minecraft.getInstance().getEntityRenderDispatcher();
+				Vector3d renderPos = renderManager.camera.getPosition();
 
-				matrixStack.push();
-				matrixStack.translate((float) (x - renderPos.getX()), (float) (y - renderPos.getY() + renderedEntity.getHeight() /*+ NeatConfig.heightAbove*/), (float) (z - renderPos.getZ()));
-				IRenderTypeBuffer.Impl buffer = mc.getRenderTypeBuffers().getBufferSource();
+				matrixStack.pushPose();
+				matrixStack.translate((float) (x - renderPos.x()), (float) (y - renderPos.y() + renderedEntity.getBbHeight() /*+ NeatConfig.heightAbove*/), (float) (z - renderPos.z()));
+				IRenderTypeBuffer.Impl buffer = mc.renderBuffers().bufferSource();
 				//ItemStack icon = getIcon(entity, boss);
 				final int light = 0xF000F0;
 				//renderEntity(mc, matrixStack, buffer, renderInfo, entity, light/*, icon, boss*/);
 				renderTest(mc, matrixStack, buffer, renderInfo, entity, light/*, icon, boss*/);
-				matrixStack.pop();
+				matrixStack.popPose();
 
 				//matrixStack.translate(0.0D, -(NeatConfig.backgroundHeight + NeatConfig.barHeight + NeatConfig.backgroundPadding), 0.0D);
 			}
 		}
-		matrixStack.pop();
+		matrixStack.popPose();
 	}
 	private void renderTest(Minecraft mc, MatrixStack matrixStack, IRenderTypeBuffer.Impl buffer, ActiveRenderInfo renderInfo, LivingEntity entity, int light/*, ItemStack icon, boolean boss*/) {
-		Quaternion rotation = renderInfo.getRotation().copy();
-		rotation.multiply(-1.0F);
-		matrixStack.rotate(rotation);
+		Quaternion rotation = renderInfo.rotation().copy();
+		rotation.mul(-1.0F);
+		matrixStack.mulPose(rotation);
 		float scale = 0.026666672F;
 		matrixStack.scale(-scale, -scale, scale);
 		float health = MathHelper.clamp(entity.getHealth(), 0.0F, entity.getMaxHealth());
@@ -151,15 +151,15 @@ public class MonocleRenderer {
 		if (entity.hasCustomName())
 			name = TextFormatting.ITALIC + name;
 
-		float namel = mc.fontRenderer.getStringWidth(name) * textScale;
+		float namel = mc.font.width(name) * textScale;
 		if (namel + 20 > size * 2) {
 			size = namel / 2.0F + 10.0F;
 		}
 		float healthSize = size * (health / entity.getMaxHealth());
-		MatrixStack.Entry entry = matrixStack.getLast();
-		Matrix4f modelViewMatrix = entry.getMatrix();
+		MatrixStack.Entry entry = matrixStack.last();
+		Matrix4f modelViewMatrix = entry.pose();
 		Vector3f normal = new Vector3f(0.0F, 1.0F, 0.0F);
-		normal.transform(entry.getNormal());
+		normal.transform(entry.normal());
 		
 		IVertexBuilder builder = buffer.getBuffer(AFRenderType.getManaBarType(AFRenderType.MANA_BAR_TEXTURE));
 		float padding = 10;//NeatConfig.backgroundPadding;
@@ -168,10 +168,10 @@ public class MonocleRenderer {
 
 		// Background
 		if (1>0) {
-			builder.pos(modelViewMatrix, -size - padding, -bgHeight, 0.01F).tex(0.0F, 0.0F).color(0, 0, 0, 64).normal(normal.getX(), normal.getY(), normal.getZ()).lightmap(light).endVertex();
-			builder.pos(modelViewMatrix, -size - padding, barHeight + padding, 0.01F).tex(0.0F, 0.5F).color(0, 0, 0, 64).normal(normal.getX(), normal.getY(), normal.getZ()).lightmap(light).endVertex();
-			builder.pos(modelViewMatrix, size + padding, barHeight + padding, 0.01F).tex(1.0F, 0.5F).color(0, 0, 0, 64).normal(normal.getX(), normal.getY(), normal.getZ()).lightmap(light).endVertex();
-			builder.pos(modelViewMatrix, size + padding, -bgHeight, 0.01F).tex(1.0F, 0.0F).color(0, 0, 0, 64).normal(normal.getX(), normal.getY(), normal.getZ()).lightmap(light).endVertex();
+			builder.vertex(modelViewMatrix, -size - padding, -bgHeight, 0.01F).uv(0.0F, 0.0F).color(0, 0, 0, 64).normal(normal.x(), normal.y(), normal.z()).uv2(light).endVertex();
+			builder.vertex(modelViewMatrix, -size - padding, barHeight + padding, 0.01F).uv(0.0F, 0.5F).color(0, 0, 0, 64).normal(normal.x(), normal.y(), normal.z()).uv2(light).endVertex();
+			builder.vertex(modelViewMatrix, size + padding, barHeight + padding, 0.01F).uv(1.0F, 0.5F).color(0, 0, 0, 64).normal(normal.x(), normal.y(), normal.z()).uv2(light).endVertex();
+			builder.vertex(modelViewMatrix, size + padding, -bgHeight, 0.01F).uv(1.0F, 0.0F).color(0, 0, 0, 64).normal(normal.x(), normal.y(), normal.z()).uv2(light).endVertex();
 		}
 	}
 }

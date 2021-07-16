@@ -43,18 +43,18 @@ public class RitualEffectUnspell extends RitualEffect {
 
         context.getWorld().playSound(null, (double)context.getCenter().getX(), (double)context.getCenter().getY(), (double)context.getCenter().getZ(), 
         		SFX.Spell.Cast.ForAffinity(spellAffinity), SoundCategory.PLAYERS, 1.0f, 1.0f);
-        context.getWorld().createExplosion((Entity)null, (float)context.getCenter().up().getX() + 0.5f, context.getCenter().up().getY(), 
-        		(float)context.getCenter().up().getZ() + 0.5f, 1, false, Explosion.Mode.NONE);
+        context.getWorld().explode((Entity)null, (float)context.getCenter().above().getX() + 0.5f, context.getCenter().above().getY(), 
+        		(float)context.getCenter().above().getZ() + 0.5f, 1, false, Explosion.Mode.NONE);
         
         for (ItemStack spawnItem : spellContext.fullSpellItems)
         {
             /*EntityPresentItem itemEntity = new EntityPresentItem(context.getWorld(), (float)context.getCenter().up().getX() + 0.5f, context.getCenter().up().getY(), 
             		(float)context.getCenter().up().getZ() + 0.5f, spawnItem);*/
-        	ItemEntity itemEntity = new ItemEntity(context.getWorld(), (float)context.getCenter().up().getX() + 0.5f, context.getCenter().up().getY(), 
-            		(float)context.getCenter().up().getZ() + 0.5f, spawnItem);
-        	itemEntity.setNoDespawn();
-        	itemEntity.setMotion(0.25 - (Math.random() * 0.5), Math.random() * 0.25, 0.25 - (Math.random() * 0.5));
-        	context.getWorld().addEntity((Entity)itemEntity);
+        	ItemEntity itemEntity = new ItemEntity(context.getWorld(), (float)context.getCenter().above().getX() + 0.5f, context.getCenter().above().getY(), 
+            		(float)context.getCenter().above().getZ() + 0.5f, spawnItem);
+        	itemEntity.setExtendedLifetime();
+        	itemEntity.setDeltaMovement(0.25 - (Math.random() * 0.5), Math.random() * 0.25, 0.25 - (Math.random() * 0.5));
+        	context.getWorld().addFreshEntity((Entity)itemEntity);
         }
         
         return true;

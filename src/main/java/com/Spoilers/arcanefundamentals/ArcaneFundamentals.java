@@ -72,16 +72,16 @@ public class ArcaneFundamentals {
     }
 	
 	private void clientSetupStuff(final FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(AFBlocks.DESERT_NOVA_CROP.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(AFBlocks.TARMA_ROOT_CROP.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(AFBlocks.WAKEBLOOM_CROP.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(AFBlocks.AUM_CROP.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(AFBlocks.CERUBLOSSOM_CROP.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.DESERT_NOVA_CROP.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.TARMA_ROOT_CROP.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.WAKEBLOOM_CROP.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.AUM_CROP.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(AFBlocks.CERUBLOSSOM_CROP.get(), RenderType.cutout());
     }
 	
 	public static final ItemGroup TAB = new ItemGroup("arcaneFundamentalsTab") {
 		@Override
-		public ItemStack createIcon() {
+		public ItemStack makeIcon() {
 			return new ItemStack(AFItems.CERUBLOSSOM_SEED.get());
 		}
     };
