@@ -75,6 +75,91 @@
 	]
   },
   
+  "Treason": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "[AF]Ritual of Treachery"
+      },
+      {
+        "type": "text",
+        "value": "Tired of your current faction? Wishing you had picked a different one to ally with from the start? Take personal offense at irreversible choices in sandbox block game?\n\nIf you said 'yes' to any of these questions then this is the ritual for you! At the low cost of 40 of your current faction's marks, 2 foci dependant on your tier, 2 motes from your faction's ritual, and an object of great importance to your faction, you can now commit high treason!"
+      },
+      {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/treason.png",
+		"width": 128,
+		"height": 128
+	  },
+	  {
+        "type": "text",
+        "value": "The ritual recipe --> displays no items because every single reagent depends on either your faction or progression tier as described on the first page. Reagents will be displayed upon attempting to activate the ritual.\nThe next few pages show a completed ritual for each faction in glorious 128p.",
+      	"newPage" : true
+      },
+      {
+        "type": "title",
+        "value": "Council",
+      	"newPage" : true
+      },
+      {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/treason_council.png",
+		"width": 128,
+		"height": 128
+	  },
+	  {
+        "type": "title",
+        "value": "Demons",
+      	"newPage" : true
+      },
+	  {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/treason_demons.png",
+		"width": 128,
+		"height": 128
+	  },
+	  {
+        "type": "title",
+        "value": "Fey",
+      	"newPage" : true
+      },
+	  {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/treason_fey.png",
+		"width": 128,
+		"height": 128
+	  },
+	  {
+        "type": "title",
+        "value": "Undead",
+      	"newPage" : true
+      },
+	  {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/treason_undead.png",
+		"width": 128,
+		"height": 128
+	  },
+      {
+        "type": "title",
+        "value": "Disclaimer:",
+      	"newPage" : true
+      },
+      {
+        "type": "text",
+        "value": "Your magic level will be reset to 29.\nYour tier will be reset to 2\nYou will have to repeat progression to choose a new faction\nThe penalty for treason is death, your faction will very quickly dispatch assailants to mete out punishment."
+      }
+    ],
+	"related_recipes": [
+	  {
+		"type": "ritual",
+		"location": "arcanefundamentals:rituals/treason"
+	  }
+	]
+  },
+  
   "Recycle Runes": {
     "index": -95,
     "category": "runesmithing",
@@ -85,19 +170,9 @@
       },
       {
         "type": "text",
-        "value": "With the number of failed runescribing attempts piling up, I decided to try and get some reusability out of them.\n\nBy smashing the botched plates and working them into some fresh clay on my anvil I should be able to make a new blank plate ready to be fired. "
+        "value": "With the number of failed runescribing attempts piling up, I decided to try and get some reusability out of them.\n\nBy violently smashing the botched plates into some fresh clay I should be able to make a new blank plate ready to be fired. "
       }
-    ],
-    "related_recipes": [
-	  {
-		"type": "runesmithing",
-		"location": "arcanefundamentals:runeforging/recycle_rune_pattern"
-	  },
-	  {
-		"type": "runesmithing",
-		"location": "arcanefundamentals:runeforging/recycle_rune_pattern2"
-	  }
-	]
+  	]
   },
   
   "Mana Monocle": {

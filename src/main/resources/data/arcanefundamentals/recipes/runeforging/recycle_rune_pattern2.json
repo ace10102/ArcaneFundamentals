@@ -1,8 +1,0 @@
-{
-	"type": "mana-and-artifice:runeforging",
-	"tier": 2,
-	"material": "minecraft:clay",
-	"hits": 2,
-	"pattern": "mana-and-artifice:rune_pattern",
-	"output": "mana-and-artifice:rune_clay_plate"
-}

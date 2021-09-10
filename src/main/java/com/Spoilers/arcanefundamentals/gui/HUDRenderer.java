@@ -10,6 +10,9 @@ import com.Spoilers.arcanefundamentals.config.AFClientConfig;
 import com.Spoilers.arcanefundamentals.items.AFItems;
 import com.ma.api.ManaAndArtificeMod;
 import com.ma.api.capabilities.IPlayerMagic;
+
+import top.theillusivec4.curios.api.CuriosApi;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -23,9 +26,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import top.theillusivec4.curios.api.CuriosApi;
 
 public class HUDRenderer extends AbstractGui {
 	
@@ -50,7 +53,8 @@ public class HUDRenderer extends AbstractGui {
 			 return;
 		 }
 		 IPlayerMagic magic = (IPlayerMagic)player.getCapability(ManaAndArtificeMod.getMagicCapability()).orElse(null);
-		 if (magic == null || !magic.isMagicUnlocked()) {
+		 ResourceLocation mana = new ResourceLocation("mana-and-artifice", "mana");
+		 if (magic == null || !magic.isMagicUnlocked() || !magic.getCastingResource().getRegistryName().equals(mana)) {
 			 return;
 		 }
 		 float scaleFactor = 1.0f;
@@ -67,7 +71,7 @@ public class HUDRenderer extends AbstractGui {
 	 
 	@SuppressWarnings("deprecation")
 	private void renderManaValues(MatrixStack matrixStack, int xPos, int yPos, IPlayerMagic magic) {
-		 if (magic.getCastingResource().getMaxAmount() > 0.0f) {
+		 if (magic.getMagicLevel() > 0) {
 			 float scale = 0.25f;
 			 RenderSystem.pushMatrix();
 			 RenderSystem.scalef(scale, scale/4, scale);
@@ -75,7 +79,7 @@ public class HUDRenderer extends AbstractGui {
 			 RenderSystem.popMatrix();
 			 xPos += 11;
 			 yPos += 4;
-			 FontRenderer fontRender = Minecraft.getInstance().font;
+			 FontRenderer fontRender = mc.font;
 			 String manaDisplay = (int)magic.getCastingResource().getAmount() + "/" + (int)magic.getCastingResource().getMaxAmount();
 			 if (mc.isEnforceUnicode()) {
 				 fontRender.draw(matrixStack, manaDisplay, ((float)xPos + 7.5f), ((float)yPos - 0.5f), ColorHelper.PackedColor.color(255, 100, 0, 100));

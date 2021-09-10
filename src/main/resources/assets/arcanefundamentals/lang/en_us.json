@@ -11,6 +11,7 @@
   "itemGroup.arcaneFundamentalsTab": "Arcane Fundamentals",
   
   "arcanefundamentals:rituals/unspell":"Ritual of Unspelling",
+  "arcanefundamentals:rituals/treason":"Ritual of Treachery",
   
   "tooltip.allbooksintro":"Ctrl for usage details",
   "tooltip.alterbook" : "%s to choose a modifier",
