@@ -1,11 +1,13 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://maven.parchmentmc.org' }
         jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 
@@ -32,11 +34,12 @@ repositories {
 }
 
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = 'alpha-7'
+version = 'alpha-8'
 group = 'com.Spoilers.arcanefundamentals' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'ArcaneFundamentals'
 
@@ -45,7 +48,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'parchment', version: '2021.10.17-1.16.5'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -113,8 +116,8 @@ dependencies {
     
     minecraft 'net.minecraftforge:forge:1.16.5-36.1.33'
 
-    compileOnly 'blank:mana-and-artifice-1.4.0.1:api' //api, compilation only
-    runtimeOnly fg.deobf('blank:mana-and-artifice:1.4.0.8') //mod itself, deobf for runtime
+    compileOnly 'blank:mana-and-artifice-1.5.0.9:api' //api, compilation only
+    runtimeOnly fg.deobf('blank:mana-and-artifice:1.5.0.10') //mod itself, deobf for runtime
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.2")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.2:api")

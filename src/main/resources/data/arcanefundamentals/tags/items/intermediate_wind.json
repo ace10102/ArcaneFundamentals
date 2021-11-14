@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mana-and-artifice:mote_air",
+    "mana-and-artifice:fall_charm",
+    "minecraft:ghast_tear",
+    "minecraft:phantom_membrane"
+  ]
+}

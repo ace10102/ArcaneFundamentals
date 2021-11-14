@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "mana-and-artifice:greater_mote_air",
+    "mana-and-artifice:greater_mote_earth",
+    "mana-and-artifice:greater_mote_fire",
+    "mana-and-artifice:greater_mote_water",
+    "mana-and-artifice:greater_mote_arcane",
+    "mana-and-artifice:greater_mote_ender"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mana-and-artifice:mote_ender",
+    "minecraft:end_crystal",
+    "minecraft:ender_chest",
+    "minecraft:dragon_breath"
+  ]
+}

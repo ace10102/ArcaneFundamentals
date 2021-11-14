@@ -3,15 +3,15 @@
 	"tier": 3,
 	"pattern":
 	[
-		[-1, 0, 0,-1, 0,-1, 0, 0,-1 ],
+		[18, 0, 0,10, 0,11, 0, 0,-1 ],
 		[ 0, 9, 0,-1, 0,-1, 0, 6, 0 ],
 		[ 0, 0, 0,-1, 2,-1, 0, 0, 0 ],
-		[-1,-1,-1, 0, 0, 0,-1,-1,-1 ],
+		[17,-1,-1, 0, 0, 0,-1,-1,12 ],
 		[ 0, 0, 5, 0, 1, 0, 3, 0, 0 ],
-		[-1,-1,-1, 0, 0, 0,-1,-1,-1 ],
+		[16,-1,-1, 0, 0, 0,-1,-1,13 ],
 		[ 0, 0, 0,-1, 4,-1, 0, 0, 0 ],
 		[ 0, 8, 0,-1, 0,-1, 0, 7, 0 ],
-		[-1, 0, 0,-1, 0,-1, 0, 0,-1 ]
+		[-1, 0, 0,15, 0,14, 0, 0,-1 ]
 	],
 	"displayPattern":
 	[
@@ -27,24 +27,23 @@
 	],
 	"reagents":
 	[
-		"         ",
+		"E  D D   ",
 		" C     C ",
 		"    B    ",
-		"         ",
+		"D       D",
 		"  B A B  ",
-		"         ",
+		"D       D",
 		"    B    ",
 		" C     C ",
-		"         "
+		"   D D   "
 	],
 	"keys":
 	{
 		"A":
 		{
-			"item": "arcanefundamentals:dynamic_spell",
+			"item": "mana-and-artifice:spell",
 			"optional": false,
 			"consume": true,
-			"is_dynamic": true,
 			"dynamic_source": true
 		},
 		"B":
@@ -57,7 +56,20 @@
 		{
 			"item": "mana-and-artifice:chimerite_gem",
 			"optional": false,
+			"consume": true		
+		},
+		"D":
+		{
+			"item": "minecraft:gunpowder",
+			"optional": false,
 			"consume": true
+		},
+		"E":
+		{
+			"item": "arcanefundamentals:dynamic_dummy",
+			"optional": true,
+			"consume": true,
+			"is_dynamic": true
 		}
 	},
 	"manaweave":

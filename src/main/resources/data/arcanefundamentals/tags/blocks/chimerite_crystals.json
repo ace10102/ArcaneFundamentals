@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "mana-and-artifice:chimerite_crystal_black",
+    "mana-and-artifice:chimerite_crystal_blue",
+    "mana-and-artifice:chimerite_crystal_brown",
+    "mana-and-artifice:chimerite_crystal_cyan",
+    "mana-and-artifice:chimerite_crystal_gray",
+    "mana-and-artifice:chimerite_crystal_green",
+    "mana-and-artifice:chimerite_crystal_light_blue",
+    "mana-and-artifice:chimerite_crystal_light_gray",
+    "mana-and-artifice:chimerite_crystal_lime",
+    "mana-and-artifice:chimerite_crystal_magenta",
+    "mana-and-artifice:chimerite_crystal_orange",
+    "mana-and-artifice:chimerite_crystal_pink",
+	"mana-and-artifice:chimerite_crystal_purple",
+    "mana-and-artifice:chimerite_crystal_red",
+    "mana-and-artifice:chimerite_crystal_white",
+    "mana-and-artifice:chimerite_crystal_yellow"
+        
+  ]
+}

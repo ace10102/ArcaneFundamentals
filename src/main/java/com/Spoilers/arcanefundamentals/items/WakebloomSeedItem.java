@@ -33,21 +33,21 @@ import net.minecraft.world.World;
 
 public class WakebloomSeedItem extends BlockItem {
 
-	public WakebloomSeedItem(Block blockIn, Item.Properties builder) {
-		super(blockIn, builder);
-	}
+    public WakebloomSeedItem(Block blockIn, Item.Properties builder) {
+        super(blockIn, builder);
+    }
 
-	public ActionResultType onItemUse(ItemUseContext context) {
-	      return ActionResultType.PASS;
-	   }
+    public ActionResultType useOn(ItemUseContext context) {
+        return ActionResultType.PASS;
+    }
 
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-	      BlockRayTraceResult blockraytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
-	      BlockRayTraceResult blockraytraceresult1 = blockraytraceresult.withPosition(blockraytraceresult.getBlockPos().above());
-	      ActionResultType actionresulttype = super.useOn(new ItemUseContext(playerIn, handIn, blockraytraceresult1));
-	      return new ActionResult<>(actionresulttype, playerIn.getItemInHand(handIn));
-	}
-	
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        BlockRayTraceResult blockraytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
+        BlockRayTraceResult blockraytraceresult1 = blockraytraceresult.withPosition(blockraytraceresult.getBlockPos().above());
+        ActionResultType actionresulttype = super.useOn(new ItemUseContext(playerIn, handIn, blockraytraceresult1));
+        return new ActionResult<>(actionresulttype, playerIn.getItemInHand(handIn));
+    }
+
 	//to mess with in the future for ideal placement functionality
 	/*public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);

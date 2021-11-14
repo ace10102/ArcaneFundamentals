@@ -1,4 +1,4 @@
-package com.Spoilers.arcanefundamentals.gui;
+/*package com.Spoilers.arcanefundamentals.gui;
 
 import java.util.Optional;
 
@@ -31,61 +31,63 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class HUDRenderer extends AbstractGui {
-	
-	 private final Minecraft mc = Minecraft.getInstance();
-	 
-	 @SubscribeEvent(receiveCanceled=true, priority=EventPriority.LOW)
-	 @OnlyIn(value=Dist.CLIENT)
-	 public void onRenderGameOverlay(RenderGameOverlayEvent.Pre event) {
-		 ClientPlayerEntity entityPlayerSP = mc.player;
-		 if (entityPlayerSP == null) {
-			 return;
-		 }
-		 if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-			 renderHUD(event.getMatrixStack(), event.getWindow().getGuiScaledWidth(), event.getWindow().getGuiScaledHeight());	 
-		 }
-	 }
-	 
-	 public void renderHUD(MatrixStack matrixStack, int screenWidth, int screenHeight) {
-		 ClientPlayerEntity player = mc.player;
-		 Optional<ImmutableTriple<String, Integer, ItemStack>> equipped = CuriosApi.getCuriosHelper().findEquippedCurio(AFItems.MANA_MONOCLE.get(), player);
-		 if (!equipped.isPresent() || !((ImmutableTriple<String, Integer, ItemStack>)equipped.get()).getRight().getItem().equals(AFItems.MANA_MONOCLE.get())) {
-			 return;
-		 }
-		 IPlayerMagic magic = (IPlayerMagic)player.getCapability(ManaAndArtificeMod.getMagicCapability()).orElse(null);
-		 ResourceLocation mana = new ResourceLocation("mana-and-artifice", "mana");
-		 if (magic == null || !magic.isMagicUnlocked() || !magic.getCastingResource().getRegistryName().equals(mana)) {
-			 return;
-		 }
-		 float scaleFactor = 1.0f;
-		 int xPos = AFClientConfig.HUD_X.get();
-		 int yPos = AFClientConfig.HUD_Y.get();
-		 GL11.glPushAttrib(1048575);
-		 GL11.glPushMatrix();
-		 GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-		 mc.getTextureManager().bind(new ResourceLocation(ArcaneFundamentals.MOD_ID, "textures/gui/mana_value_bar.png"));
-		 renderManaValues(matrixStack, xPos, yPos, magic);
-		 GL11.glPopMatrix();
-		 GL11.glPopAttrib();
-	 }
-	 
-	@SuppressWarnings("deprecation")
-	private void renderManaValues(MatrixStack matrixStack, int xPos, int yPos, IPlayerMagic magic) {
-		 if (magic.getMagicLevel() > 0) {
-			 float scale = 0.25f;
-			 RenderSystem.pushMatrix();
-			 RenderSystem.scalef(scale, scale/4, scale);
-			 blit(matrixStack, xPos*4, yPos*16, 0, 0, 256, 256);
-			 RenderSystem.popMatrix();
-			 xPos += 11;
-			 yPos += 4;
-			 FontRenderer fontRender = mc.font;
-			 String manaDisplay = (int)magic.getCastingResource().getAmount() + "/" + (int)magic.getCastingResource().getMaxAmount();
-			 if (mc.isEnforceUnicode()) {
-				 fontRender.draw(matrixStack, manaDisplay, ((float)xPos + 7.5f), ((float)yPos - 0.5f), ColorHelper.PackedColor.color(255, 100, 0, 100));
-			 } else {
-				 fontRender.draw(matrixStack, manaDisplay, ((float)xPos + 0.5f), ((float)yPos + 0.5f), ColorHelper.PackedColor.color(255, 100, 0, 100));
-			 }
-		 }
-	 }
+
+    private final Minecraft mc = Minecraft.getInstance();
+
+    @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
+    @OnlyIn(value = Dist.CLIENT)
+    public void onRenderGameOverlay(RenderGameOverlayEvent.Pre event) {
+        ClientPlayerEntity entityPlayerSP = mc.player;
+        if (entityPlayerSP == null) {
+            return;
+        }
+        if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
+            renderHUD(event.getMatrixStack(), event.getWindow().getGuiScaledWidth(), event.getWindow().getGuiScaledHeight());
+        }
+    }
+
+    public void renderHUD(MatrixStack matrixStack, int screenWidth, int screenHeight) {
+        ClientPlayerEntity player = mc.player;
+        Optional<ImmutableTriple<String, Integer, ItemStack>> equipped = CuriosApi.getCuriosHelper().findEquippedCurio(AFItems.MANA_MONOCLE.get(), player);
+        if (!equipped.isPresent() || !equipped.get().getRight().getItem().equals(AFItems.MANA_MONOCLE.get())) {
+            return;
+        }
+        IPlayerMagic magic = player.getCapability(ManaAndArtificeMod.getMagicCapability()).orElse(null);
+        ResourceLocation mana = new ResourceLocation("mana-and-artifice", "mana");
+        if (magic == null || !magic.isMagicUnlocked() || !magic.getCastingResource().getRegistryName().equals(mana)) {
+            return;
+        }
+        float scaleFactor = 1.0f;
+        int xPos = AFClientConfig.HUD_X.get();
+        int yPos = AFClientConfig.HUD_Y.get();
+        GL11.glPushAttrib(1048575);
+        GL11.glPushMatrix();
+        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
+        mc.getTextureManager().bind(new ResourceLocation(ArcaneFundamentals.MOD_ID, "textures/gui/mana_value_bar.png"));
+        renderManaValues(matrixStack, xPos, yPos, magic);
+        GL11.glPopMatrix();
+        GL11.glPopAttrib();
+    }
+
+    @SuppressWarnings("deprecation")
+    private void renderManaValues(MatrixStack matrixStack, int xPos, int yPos, IPlayerMagic magic) {
+        if (magic.getMagicLevel() > 0) {
+            float scale = 0.25f;
+            RenderSystem.pushMatrix();
+            RenderSystem.scalef(scale, scale/4, scale);
+            blit(matrixStack, xPos*4, yPos*16, 0, 0, 256, 256);
+            RenderSystem.popMatrix();
+            xPos += 11;
+            yPos += 4;
+            FontRenderer fontRender = mc.font;
+            String manaDisplay = (int)magic.getCastingResource().getAmount() + "/" + (int)magic.getCastingResource().getMaxAmount();
+            if (mc.isEnforceUnicode()) {
+                fontRender.draw(matrixStack, manaDisplay, ((float)xPos + 7.5f), ((float)yPos - 0.5f), ColorHelper.PackedColor.color(255, 100, 0, 100));
+            }
+            else {
+                fontRender.draw(matrixStack, manaDisplay, ((float)xPos + 0.5f), ((float)yPos + 0.5f), ColorHelper.PackedColor.color(255, 100, 0, 100));
+            }
+        }
+    }
 }
+*/

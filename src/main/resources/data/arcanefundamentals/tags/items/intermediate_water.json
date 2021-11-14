@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mana-and-artifice:mote_water",
+    "minecraft:scute",
+    "minecraft:nautilus_shell",
+    "minecraft:wet_sponge"
+  ]
+}

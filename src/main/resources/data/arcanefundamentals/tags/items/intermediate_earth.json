@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mana-and-artifice:mote_earth",
+    "minecraft:diamond_hoe",
+    "minecraft:golden_apple",
+    "minecraft:emerald_ore"
+  ]
+}

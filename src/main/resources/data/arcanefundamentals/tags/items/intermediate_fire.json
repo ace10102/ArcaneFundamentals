@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mana-and-artifice:mote_fire",
+    "mana-and-artifice:living_flame",
+    "minecraft:tnt",
+    "minecraft:nether_quartz_ore"
+  ]
+}

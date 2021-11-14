@@ -8,13 +8,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class VinteumPowder extends FallingBlock {
-	
-	public VinteumPowder(Properties properties) {
-		super(properties);
-	}
-	
-	@OnlyIn(Dist.CLIENT)
-	public int getDustColor(BlockState state, IBlockReader reader, BlockPos pos) {
-		return -8356741;
-	}
+
+    public VinteumPowder(Properties properties) {
+        super(properties);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getDustColor(BlockState state, IBlockReader reader, BlockPos pos) {
+        return -8356741;
+    }
 }

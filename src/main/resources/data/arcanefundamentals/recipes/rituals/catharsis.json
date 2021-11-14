@@ -1,0 +1,76 @@
+{
+	"type": "mana-and-artifice:ritual",
+	"tier": 4,
+	"pattern":
+	[
+		[-1,13, 0, 2, 0, 3,-1],
+		[12, 0,-1, 0,-1, 0, 4],
+		[ 0,-1, 0, 0, 0,-1, 0],
+		[11, 0, 0, 1, 0, 0, 5],
+		[ 0,-1, 0, 0, 0,-1, 0],
+		[10, 0,-1, 0,-1, 0, 6],
+		[-1, 9, 0, 8, 0, 7,-1]
+	],
+	"displayPattern":
+	[
+		[16,11, 0,19, 0, 1,14],
+		[ 8, 0,-1, 0,-1, 0, 4],
+		[ 0,-1, 0, 0, 0,-1, 0],
+		[23, 0, 0,-1, 0, 0,22],
+		[ 0,-1, 0, 0, 0,-1, 0],
+		[ 5, 0,-1, 0,-1, 0, 7],
+		[13, 2, 0,20, 0,10,17]
+	],
+	"reagents":
+	[
+		" D B C ",
+		"C     D",
+		"       ",
+		"B  A  B",
+		"       ",
+		"D     C",
+		" C B D "
+	],
+	"keys":
+	{
+		"A":
+		{
+			"item": "arcanefundamentals:greater_motes",
+			"optional": false,
+			"consume": true,
+			"is_dynamic": true,
+			"dynamic_source": true
+		},
+		"B":
+		{
+			"item": "arcanefundamentals:dynamic_affinity",
+			"optional": false,
+			"consume": true,
+			"is_dynamic": true
+		},
+		"C":
+		{
+			"item": "minecraft:charcoal",
+			"optional": false,
+			"consume": true
+		},
+		"D":
+		{
+			"item": "minecraft:honey_bottle",
+			"optional": false,
+			"consume": true
+		}
+	},
+	"manaweave":
+	[
+	],
+	"parameters":
+	{
+		"innerColor": "0xda1010",
+		"outerColor": "0xfa0000",
+		"displayIndexes": false,
+		"kittable": false,
+		"connectBeam": true,
+		"beamColor": "0xee0000"
+	}
+}

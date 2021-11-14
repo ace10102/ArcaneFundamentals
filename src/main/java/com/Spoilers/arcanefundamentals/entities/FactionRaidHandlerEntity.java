@@ -3,10 +3,11 @@ package com.Spoilers.arcanefundamentals.entities;
 import java.util.UUID;
 
 import com.Spoilers.arcanefundamentals.ArcaneFundamentals;
+import com.Spoilers.arcanefundamentals.particle.AFParticleType;
+import com.Spoilers.arcanefundamentals.particle.ParticleGetter;
 import com.ma.api.capabilities.Faction;
 import com.ma.api.entities.FactionRaidRegistry;
 import com.ma.api.entities.IFactionEnemy;
-import com.ma.api.particles.ParticleInit;
 import com.ma.api.sound.SFX;
 import com.mojang.datafixers.util.Pair;
 
@@ -21,6 +22,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -55,54 +57,43 @@ public class FactionRaidHandlerEntity extends Entity {
             }
         } else if (this.tickCount == 20) {
             switch (this.getFaction()) {
-                case ANCIENT_WIZARDS: {
-                    this.playSound(SFX.Event.Faction.FACTION_RAID_COUNCIL, 1.0f, 1.0f);
-                    break;
-                }
-                case DEMONS: {
-                    this.playSound(SFX.Event.Faction.FACTION_RAID_DEMONS, 1.0f, 1.0f);
-                    break;
-                }
-                case FEY_COURT: {
-                    this.playSound(SFX.Event.Faction.FACTION_RAID_FEY, 1.0f, 1.0f);
-                    break;
-                }
-                case UNDEAD: {
-                    this.playSound(SFX.Event.Faction.FACTION_RAID_DEMONS, 1.0f, 1.0f);
-                    break;
-                }
-			default:
-				break;
+            case ANCIENT_WIZARDS: { this.playSound(SFX.Event.Faction.FACTION_RAID_COUNCIL, 1.0f, 1.0f); break; }  
+            case DEMONS: { this.playSound(SFX.Event.Faction.FACTION_RAID_DEMONS, 1.0f, 1.0f); break; } 
+            case FEY_COURT: { this.playSound(SFX.Event.Faction.FACTION_RAID_FEY, 1.0f, 1.0f); break; }  
+            case UNDEAD: { this.playSound(SFX.Event.Faction.FACTION_RAID_DEMONS, 1.0f, 1.0f); break; }  
+            default: break;
             }
         }
     }
 
     private void spawnDemonParticles() {
         int i;
-        for (i = 0; i < 15; ++i) {
-            this.level.addParticle((IParticleData)ParticleInit.HELLFIRE.get(), this.getX(), this.getY(), this.getZ(), -0.05f + Math.random() * 0.1f, 0.1f, -0.05f + Math.random() * 0.1f);
+        ParticleType<?> instanceHellfire = AFParticleType.getCheckedInstance(ParticleGetter.getParticle(ParticleGetter.HELLFIRE));
+        if (instanceHellfire != null) { 
+            for (i = 0; i < 15; ++i) {
+                this.level.addParticle((IParticleData)instanceHellfire, this.getX(), this.getY(), this.getZ(), -0.05f + Math.random() * 0.1f, 0.1f, -0.05f + Math.random() * 0.1f);
+            }
         }
-        this.level.addParticle((IParticleData)ParticleTypes.LAVA, this.getX() - 0.5 + Math.random() * 1.0, this.getY(), this.getZ() - 0.5 + Math.random() * 1.0, 0.0, 0.05f, 0.0);
+        this.level.addParticle(ParticleTypes.LAVA, this.getX() - 0.5 + Math.random() * 1.0, this.getY(), this.getZ() - 0.5 + Math.random() * 1.0, 0.0, 0.05f, 0.0);
         for (i = 0; i < 5; ++i) {
-            this.level.addParticle((IParticleData)ParticleTypes.LANDING_LAVA, this.getX() - 1.5 + Math.random() * 3.0, this.getY(), this.getZ() - 1.5 + Math.random() * 3.0, 0.0, 0.05f, 0.0);
+            this.level.addParticle(ParticleTypes.LANDING_LAVA, this.getX() - 1.5 + Math.random() * 3.0, this.getY(), this.getZ() - 1.5 + Math.random() * 3.0, 0.0, 0.05f, 0.0);
         }
     }
 
     private void spawnUndeadParticles() {
         int i;
-        for (i = 0; i < 15; ++i) {
-            this.level.addParticle(ParticleInit.FROST.get(), this.getX(), this.getY(), this.getZ(), -0.05f + Math.random() * 0.1f, 0.1f, -0.05f + Math.random() * 0.1f);
+        ParticleType<?> instanceFrost = AFParticleType.getCheckedInstance(ParticleGetter.getParticle(ParticleGetter.FROST));
+        if (instanceFrost != null) { 
+            for (i = 0; i < 15; ++i) {
+                this.level.addParticle((IParticleData)instanceFrost, this.getX(), this.getY(), this.getZ(), -0.05f + Math.random() * 0.1f, 0.1f, -0.05f + Math.random() * 0.1f);
+            }
         }
-        for (i = 0; i < 5; ++i) {
-            this.level.addParticle(ParticleInit.BONE.get(), this.getX() - 1.5 + Math.random() * 3.0, this.getY(), this.getZ() - 1.5 + Math.random() * 3.0, 0.0, 0.05f, 0.0);
+        ParticleType<?> instanceBone = AFParticleType.getCheckedInstance(ParticleGetter.getParticle(ParticleGetter.BONE));
+        if (instanceBone != null) { 
+            for (i = 0; i < 5; ++i) {
+                this.level.addParticle((IParticleData)instanceBone, this.getX() - 1.5 + Math.random() * 3.0, this.getY(), this.getZ() - 1.5 + Math.random() * 3.0, 0.0, 0.05f, 0.0);
+            }
         }
-    }
-
-    private PlayerEntity getPlayer() {
-        if (this.player == null && this.playerUUID != null) {
-            this.player = this.level.getPlayerByUUID(this.playerUUID);
-        }
-        return this.player;
     }
 
     private boolean spawnRaidEntity() {
@@ -116,46 +107,42 @@ public class FactionRaidHandlerEntity extends Entity {
         IFactionEnemy<? extends MobEntity> entity = (IFactionEnemy<? extends MobEntity>)(soldier.getFirst()).create(this.level);
         entity.setRaidTarget(getPlayer());
         entity.setTier(soldier.getSecond());
-        ((LivingEntity)entity).setPos(this.getX()-1+Math.random(), this.getY(), this.getZ()-1+Math.random());
-        
-        switch(this.getFaction()) {
-        case ANCIENT_WIZARDS: ((LivingEntity)entity).addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 600, 1)); 
-        	break;
-        case DEMONS: ((LivingEntity)entity).addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 300, 1));
-        	break;
-        case FEY_COURT: ((LivingEntity)entity).addEffect(new EffectInstance(Effects.REGENERATION, 300, 1));
-        	break;
-        case UNDEAD: ((LivingEntity)entity).addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 600, 1));
-        	break;
-		default:
-			break;
+        ((LivingEntity) entity).setPos(this.getX() - 1 + Math.random(), this.getY(), this.getZ() - 1 + Math.random());
+
+        switch (this.getFaction()) {
+        case ANCIENT_WIZARDS: { ((LivingEntity)entity).addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 600, 1)); break; }
+        case DEMONS: { ((LivingEntity)entity).addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 300, 1)); break; }
+        case FEY_COURT: { ((LivingEntity)entity).addEffect(new EffectInstance(Effects.REGENERATION, 300, 1)); break; }
+        case UNDEAD: { ((LivingEntity)entity).addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 600, 1)); break; }
+        default: break;
         }
-        
-        this.level.addFreshEntity((Entity)entity);
-        int soldier_strength = FactionRaidRegistry.getStrengthRating(this.getFaction(), (EntityType<? extends IFactionEnemy<? extends MobEntity>>)(soldier.getFirst()), soldier.getSecond());
-        if (soldier_strength == -1) {
+
+        this.level.addFreshEntity((Entity) entity);
+        int soldier_strength = FactionRaidRegistry.getStrengthRating(this.getFaction(), (EntityType<? extends IFactionEnemy<? extends MobEntity>>) (soldier.getFirst()), soldier.getSecond());
+        if (soldier_strength == -1)
             return false;
-        }
         this.strength -= soldier_strength;
         return this.strength > 0;
     }
 
+    private PlayerEntity getPlayer() {
+        if (this.player == null && this.playerUUID != null) {
+            this.player = this.level.getPlayerByUUID(this.playerUUID);
+        }
+        return this.player;
+    }
+    
     protected void defineSynchedData() {
         this.entityData.define(FACTION, 0);
     }
 
     protected void readAdditionalSaveData(CompoundNBT compound) {
-        if (compound.contains("strength")) {
-            this.strength = compound.getInt("strength");
-        }
-        if (compound.contains("faction")) {
-            this.entityData.set(FACTION, compound.getInt("faction"));
-        }
+        if (compound.contains("strength")) this.strength = compound.getInt("strength");
+        if (compound.contains("faction")) this.entityData.set(FACTION, compound.getInt("faction"));
         if (compound.contains("target")) {
             try {
                 this.playerUUID = UUID.fromString(compound.getString("target"));
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 ArcaneFundamentals.LOGGER.error("Failed to load player UUID when loading faction raid.  Skipping and despawning the raid.");
             }
         }

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mana-and-artifice:mote_arcane",
+    "mana-and-artifice:minor_mana_gem",
+    "minecraft:experience_bottle",
+    "minecraft:enchanting_table"
+  ]
+}

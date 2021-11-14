@@ -10,8 +10,15 @@
   
   "itemGroup.arcaneFundamentalsTab": "Arcane Fundamentals",
   
-  "arcanefundamentals:rituals/unspell":"Ritual of Unspelling",
+  "arcanefundamentals:rituals/unspelling":"Ritual of Unspelling",
   "arcanefundamentals:rituals/treason":"Ritual of Treachery",
+  "arcanefundamentals:rituals/catharsis":"Ritual of Catharsis",
+  
+  "ritual.arcanefundamentals.ritual.no_crystal":"Missing a Chimerite Crystal at %s",
+  "ritual.arcanefundamentals.ritual.no_affinity":"Missing Crystal Affinity, needs to be %s",
+  "ritual.arcanefundamentals.ritual.wrong_affinity":"Wrong Crystal Affinity, needs to be %s",
+  "ritual.arcanefundamentals.ritual.no_resevoir":"Missing a Mana Resevoir at %s",
+  "ritual.arcanefundamentals.ritual.no_mana":"Mana Resevoir at %s is not full",
   
   "tooltip.allbooksintro":"Ctrl for usage details",
   "tooltip.alterbook" : "%s to choose a modifier",

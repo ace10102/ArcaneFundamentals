@@ -1,4 +1,17 @@
 =========
+Build: 1.16.5-Alpha 8 / Beta 4
+	* Now Building against Mana & Artifice 1.5.0.10
+	* Fixed bug with wakebloom seeds not placing correctly on fluids
+	* Reformatted much code for general cleanup
+	* Backend refactoring for uniform naming conventions
+	* Backend changes to conform to Mana & Artifice updates
+	* Updated/Added codex entries
+	+ Added Ritual of Catharsis : cleanses your body of magical residue, resets your affinity attunements and potentially removes other magical effects
+	+ Mana Monocle is finally no longer completely useless: right click a block with an empty hand inside the area of a warding candle to render the candle's aoe, shift right click with an empty hand to clear it
+	+ Ritual of Unspelling now requires chimerite crystals like Ritual of Catharsis and the construct workbench do, as well as mana resevoirs
+	+ Particlezz
+	- Removed original Mana Monocle hud element finally
+=========
 Build: 1.16.5-Alpha 7 / Beta 3
 	* Now Building against Mana & Artifice 1.4.0.8
 	* Updated Mana Monocle to handle alternative casting resources, it doesnt display them, it just wont crash, it's still pretty pointless
