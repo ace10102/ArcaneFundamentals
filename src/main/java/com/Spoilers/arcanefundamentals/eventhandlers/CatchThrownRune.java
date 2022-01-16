@@ -1,4 +1,4 @@
-package com.Spoilers.arcanefundamentals.util;
+package com.Spoilers.arcanefundamentals.eventhandlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -22,7 +22,7 @@ public class CatchThrownRune {
         if (event.getEntity() != null && event.getRayTraceResult().getType() == Type.BLOCK) {
             World world = event.getEntity().level;
             ResourceLocation entity = event.getEntity().getType().getRegistryName();
-            BlockPos hit = ((BlockRayTraceResult) event.getRayTraceResult()).getBlockPos();
+            BlockPos hit = ((BlockRayTraceResult)event.getRayTraceResult()).getBlockPos();
             Block target = world.getBlockState(hit).getBlock();
 
             if (!world.isClientSide && entity.equals(RuneProjectile) && target == Blocks.CLAY) {

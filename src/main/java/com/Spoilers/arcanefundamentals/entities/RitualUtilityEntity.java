@@ -16,7 +16,9 @@ import com.ma.api.sound.SFX;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -64,7 +66,7 @@ public class RitualUtilityEntity extends Entity {
         super(AFEntities.RITUAL_UTILITY_ENTITY.get(), world);
         this.setRitual(ritual);
         this.position = position;
-        this.player = player;
+        this.setPlayer(player);
         this.playerTier = tier;
     }
 
@@ -150,6 +152,13 @@ public class RitualUtilityEntity extends Entity {
                             }
                             this.getPlayer().curePotionEffects(new ItemStack(Items.MILK_BUCKET));
                             for (Map.Entry<Affinity, Float> e : playerMagic.getSortedAffinityDepths().entrySet()) {
+                                for(int i = (int)(e.getValue()/25); i >= 1; i--) {
+                                    ItemStack mote = new ItemStack(this.getMoteForAffinity(e.getKey()));
+                                    ItemEntity itemEntity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), mote);//make present item
+                                    itemEntity.setExtendedLifetime();
+                                    itemEntity.setDeltaMovement(0.25 - (Math.random() * 0.5), Math.random() * 0.25, 0.25 - (Math.random() * 0.5));
+                                    this.level.addFreshEntity(itemEntity);
+                                }
                                 playerMagic.setAffinityDepth(e.getKey(), 0f);
                             }
                             playerMagic.forceSync();
@@ -198,6 +207,17 @@ public class RitualUtilityEntity extends Entity {
         }
     }
     
+    private Item getMoteForAffinity(Affinity affinity) {
+        switch (affinity.getShiftAffinity()) {
+        case ARCANE: return ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:mote_arcane"));
+        case EARTH: return ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:mote_earth"));
+        case ENDER: return ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:mote_ender"));
+        case FIRE: return ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:mote_fire"));
+        case WATER: return ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:mote_water"));
+        case WIND: return ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:mote_air"));
+        default: return ForgeRegistries.ITEMS.getValue(new ResourceLocation("mana-and-artifice:cerublossom"));
+        }
+    }
 
     private void spawnAffinityParticles(Affinity affinity) {
         ParticleType<?> instance = AFParticleType.getCheckedInstance(ParticleGetter.getAffinityParticle(affinity));
@@ -245,6 +265,11 @@ public class RitualUtilityEntity extends Entity {
             }
             return Affinity.UNKNOWN;
         } 
+    }
+    
+    private void setPlayer(PlayerEntity player) {
+        this.player = player;
+        this.playerUUID = player.getUUID();
     }
     
     private PlayerEntity getPlayer() {

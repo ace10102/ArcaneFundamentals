@@ -4,21 +4,22 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.Spoilers.arcanefundamentals.blocks.AFBlocks;
+import com.Spoilers.arcanefundamentals.commands.CommandArgumentInit;
 import com.Spoilers.arcanefundamentals.commands.CommandInit;
 import com.Spoilers.arcanefundamentals.config.AFConfigInit;
 import com.Spoilers.arcanefundamentals.entities.AFEntities;
 import com.Spoilers.arcanefundamentals.entities.AFEntityRenderers;
+import com.Spoilers.arcanefundamentals.eventhandlers.CatchThrownRune;
+import com.Spoilers.arcanefundamentals.eventhandlers.GetIfCandleArea;
+import com.Spoilers.arcanefundamentals.eventhandlers.MonocleCraftingHandler;
+import com.Spoilers.arcanefundamentals.eventhandlers.WandCodexAlternate;
 import com.Spoilers.arcanefundamentals.gui.CandleRenderer;
-//import com.Spoilers.arcanefundamentals.gui.HUDRenderer;
-//import com.Spoilers.arcanefundamentals.gui.MonocleRenderer;
-//import com.Spoilers.arcanefundamentals.gui.TooltipHandler;
+import com.Spoilers.arcanefundamentals.gui.MonocleRenderer;
 import com.Spoilers.arcanefundamentals.items.AFItems;
 import com.Spoilers.arcanefundamentals.rituals.RitualEffectCatharsis;
+import com.Spoilers.arcanefundamentals.rituals.RitualEffectDistension;
 import com.Spoilers.arcanefundamentals.rituals.RitualEffectTreason;
 import com.Spoilers.arcanefundamentals.rituals.RitualEffectUnspelling;
-import com.Spoilers.arcanefundamentals.util.CatchThrownRune;
-import com.Spoilers.arcanefundamentals.util.GetIfCandleArea;
-import com.Spoilers.arcanefundamentals.util.WandCodexAlternate;
 import com.ma.api.guidebook.RegisterGuidebooksEvent;
 import com.ma.api.rituals.RitualEffect;
 
@@ -60,16 +61,18 @@ public class ArcaneFundamentals {
         AFEntities.ENTITY_TYPES.register(this.modEventBus);
 
         MinecraftForge.EVENT_BUS.register(new WandCodexAlternate());
+        MinecraftForge.EVENT_BUS.register(new MonocleCraftingHandler());
         MinecraftForge.EVENT_BUS.register(new CatchThrownRune());
         MinecraftForge.EVENT_BUS.register(new GetIfCandleArea());
+        MinecraftForge.EVENT_BUS.register(CommandInit.class);
+        modEventBus.register(CommandArgumentInit.class);
         MinecraftForge.EVENT_BUS.register(this);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            MinecraftForge.EVENT_BUS.register(CommandInit.class);
 
             //MinecraftForge.EVENT_BUS.register(new HUDRenderer());
             MinecraftForge.EVENT_BUS.register(new CandleRenderer());
-            // MinecraftForge.EVENT_BUS.register(new MonocleRenderer());
+            MinecraftForge.EVENT_BUS.register(new MonocleRenderer());
             // MinecraftForge.EVENT_BUS.register(new TooltipHandler());
 
             modEventBus.addListener(this::clientSetupStuff);
@@ -109,6 +112,8 @@ public class ArcaneFundamentals {
                     .setRegistryName(new ResourceLocation(ArcaneFundamentals.MOD_ID, "ritual-effect-treason")));
             event.getRegistry().register(new RitualEffectCatharsis(new ResourceLocation(ArcaneFundamentals.MOD_ID, "rituals/catharsis"))
                     .setRegistryName(new ResourceLocation(ArcaneFundamentals.MOD_ID, "ritual-effect-catharsis")));
+            event.getRegistry().register(new RitualEffectDistension(new ResourceLocation(ArcaneFundamentals.MOD_ID, "rituals/distension"))
+                    .setRegistryName(new ResourceLocation(ArcaneFundamentals.MOD_ID, "ritual-effect-distension")));
             ArcaneFundamentals.LOGGER.info("Arcane Fundamentals: rituals registered");
         }
     }

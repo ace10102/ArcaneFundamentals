@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"arcanefundamentals:mana_monocle"
+		"arcanefundamentals:mana_monocle",
+		"arcanefundamentals:eldrin_monocle"
 	]
 }

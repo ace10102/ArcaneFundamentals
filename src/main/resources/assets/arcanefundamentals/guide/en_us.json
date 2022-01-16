@@ -48,7 +48,7 @@
 	]
   },
   
-    "Unspell": {
+    "Unspelling": {
     "index": 0,
     "category": "rituals",
     "sections": [
@@ -179,7 +179,7 @@
       },
       {
         "type": "text",
-        "value": "This ritual is used to cleanse various magical effects from the body and can purge most affinities and afflictions. The ritual will require four Chimerite Crystals placed as depicted and attuned to an affinity opposite your own. Reagents next page"
+        "value": "This ritual will cleanse various magical effects from your body and should purge most affinities and afflictions. The ritual will require four Chimerite Crystals placed as depicted and attuned to the affinity opposite your own. Reagents next page"
       },
       {
 		"type": "image",
@@ -229,13 +229,49 @@
 	  },
       {
         "type": "text",
-        "value": "Editor's Notes:\nThe conditional items required for each affinity are determined by tags.\nThe ritual reagent indicator will not cycle through the items in the tag but this is just a visual limitation.\nAfter completing the ritual (no Manaweaving required) there will be a pillar of elemental particles and magic circle that you must stand in the middle of for the ritual to fully take effect."
+        "value": "Editor's Notes:\nThe conditional items required for each affinity are determined by tags.\nThe ritual reagent indicator will not cycle through the items in the tag but this is just a visual limitation.\nAfter completing the ritual (no Manaweaving required) there will be a pillar of elemental particles and magic circle that you must stand in the middle of for the ritual to fully take effect. The elemental energy purged may coalesce into small motes nearby."
       }
     ],
 	"related_recipes": [
 	  {
 		"type": "ritual",
 		"location": "arcanefundamentals:rituals/catharsis"
+	  }
+	]
+  },
+
+    "Distension": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "[AF]Ritual of Distension"
+      },
+      {
+        "type": "text",
+        "value": "This ritual you've devised allows a slight distension of the aperture through which an Eldrin Wellspring manifests. This procedure only increases the raw flow of power from the weakest of wellsprings by a miniscule amount, but it should increase the refracted power to a much more useful level."
+      },
+      {
+        "type": "text",
+        "value": "This ritual must be built with an Eldrin Wellspring at it's center and will require 4 Pedestals placed as can be seen on the next page, these pedestals will each require a mote of the same affinity as the central wellspring."
+      },
+      {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/distension/distension.png",
+		"width": 128,
+		"height": 128
+	  },
+      {
+        "type": "text",
+        "value": "The ritual will provide appropriate feedback should any of the requirements be unmet when attempting to start it.",
+        "newPage" : true
+      }
+    ],
+	"related_recipes": [
+	  {
+		"type": "ritual",
+		"location": "arcanefundamentals:rituals/distension"
 	  }
 	]
   },
@@ -251,6 +287,12 @@
       {
         "type": "text",
         "value": "With the number of failed runescribing attempts piling up, I decided to try and get some reusability out of them.\n\nBy violently smashing the botched plates into some fresh clay I should be able to make a new blank plate ready to be fired. "
+      }
+  	],
+	"related_recipes": [
+	  {
+        "type": "arcane_furnace",
+        "location": "mana-and-artifice:arcanefurnace/rune_pattern_blank"
       }
   	]
   },
@@ -270,7 +312,57 @@
     "related_recipes": [
       {
         "type": "manaweaving_altar",
-		"location": "arcanefundamentals:manaweaving/artifice/mana_monocle"
+        "location": "arcanefundamentals:manaweaving/artifice/mana_monocle"
+      }
+	]
+  },
+  
+  "Eldrin Monocle": {
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "[AF]Eldrin Monocle"
+      },
+      {
+        "type": "text",
+        "value": "This monocle, when worn, allows me to view the amount of power I should be able to refract off of an Eldrin Wellspring. The effect is very faint without the aid of an unguent to make the wellspring fully visible." 
+      },
+      {
+        "type": "text",
+        "value": "The crafting of this artefact is a bit unique. First you must place a pedestal at the location of an Eldrin Wellspring with a Mana Monocle put onto it as shown." 
+      },
+      {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/monocle/pedestal.png",
+		"width": 73,
+		"height": 80
+	  },
+      {
+        "type": "text",
+        "value": "You must then Manaweave or use projectors nearby as though casting a Cantrip with the shapes [Orbeus, Adamas, Estrela]" 
+      },
+      {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/monocle/weaves.png",
+		"width": 112,
+		"height": 34
+	  },
+      {
+        "type": "text",
+        "value": "The patterns will jump to the pedestal and the Eldrin Monocle will be crafted when the 'cantrip' is complete." 
+      },
+      {
+		"type": "image",
+		"location": "arcanefundamentals:textures/guide/monocle/complete.png",
+		"width": 56,
+		"height": 128
+	  }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mana-and-artifice:manaweaving/wellspring_sight_unguent"
       }
 	]
   }

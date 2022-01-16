@@ -1,0 +1,84 @@
+{
+	"type": "mana-and-artifice:ritual",
+	"tier": 4,
+	"pattern":
+	[
+		[ 0,10,-1,-1, 0,-1,-1,11, 0 ],
+		[17, 0, 0, 0, 6, 0, 0, 0,12 ],
+		[-1, 0, 0,-1, 0,-1, 0, 0,-1 ],
+		[-1, 0,-1, 2, 0, 3,-1, 0,-1 ],
+		[ 0, 9, 0, 0, 1, 0, 0, 7, 0 ],
+		[-1, 0,-1, 5, 0, 4,-1, 0,-1 ],
+		[-1, 0, 0,-1, 0,-1, 0, 0,-1 ],
+		[16, 0, 0, 0, 8, 0, 0, 0,13 ],
+		[ 0,15,-1,-1, 0,-1,-1,14, 0 ]
+	],
+	"displayPattern":
+	[
+		[ 0,16,43,21, 0,26,41,31, 0 ],
+		[34, 0, 0, 0,36, 0, 0, 0,17 ],
+		[38, 0, 0, 6, 0,12, 0, 0,46 ],
+		[29, 0,11, 1, 0, 2, 7, 0,22 ],
+		[ 0,45, 0, 0,-1, 0, 0,39, 0 ],
+		[24, 0, 9, 4, 0, 3,13, 0,27 ],
+		[40, 0, 0,14, 0, 8, 0, 0,44 ],
+		[19, 0, 0, 0,42, 0, 0, 0,32 ],
+		[ 0,33,47,28, 0,23,37,18, 0 ]
+	],
+	"reagents":
+	[
+		" D     D ",
+		"D   C   D",
+		"         ",
+		"   B B   ",
+		" C  A  C ",
+		"   B B   ",
+		"         ",
+		"D   C   D",
+		" D     D "
+	],
+	"keys":
+	{
+		"A":
+		{
+			"item": "minecraft:end_crystal",
+			"optional": false,
+			"consume": true
+		},
+		"B":
+		{
+			"item": "mana-and-artifice:ritual_focus_greater",
+			"optional": false,
+			"consume": true
+		},
+		"C":
+		{
+			"item": "mana-and-artifice:eldrin_rift",
+			"optional": false,
+			"consume": true
+		},
+		"D":
+		{
+			"item": "minecraft:crying_obsidian",
+			"optional": false,
+			"consume": true
+		}
+	},
+	"manaweave":
+	[
+		"mana-and-artifice:manaweave_patterns/diamond",
+		"mana-and-artifice:manaweave_patterns/square",
+		"mana-and-artifice:manaweave_patterns/circle",
+		"mana-and-artifice:manaweave_patterns/square",
+		"mana-and-artifice:manaweave_patterns/diamond"
+	],
+	"parameters":
+	{
+		"innerColor": "0x00ffff",
+		"outerColor": "0x00ff40",
+		"displayIndexes": false,
+		"kittable": false,
+		"connectBeam": true,
+		"beamColor": "0x00beff"
+	}
+}

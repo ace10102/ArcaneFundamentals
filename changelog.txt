@@ -1,4 +1,17 @@
 =========
+Build: 1.16.5-Alpha 9 / Beta 5
+	* Now Building against Mana & Artifice 1.5.1.5
+	* Fixed potential candle renderer issue on some gpus
+	* Spelled 'reservoir' correctly
+	* Updated/Added codex entries
+	* Updated codex images to match updated textures/models
+	+ Added Eldrin Monocle : wellspring upgrade to Mana Monocle, displays wellspring strength value without replacing need for unguents
+	+ Added unique crafting mechanic for the Eldrin Monocle and Codex entry
+	+ Added Ritual of Distension : build centered on a weak Eldrin Wellspring, increases the wellspring's power by five
+	+ Added ReplaceWellspring command : allows you to modify an existing wellspring's values- which the standard MakeWellspring command does not
+	+ Ritual of Catharsis will now return a few basic motes based on how much affinity depth was reset
+	- Removed a lot of dead/redundant code/files
+=========
 Build: 1.16.5-Alpha 8 / Beta 4
 	* Now Building against Mana & Artifice 1.5.0.10
 	* Fixed bug with wakebloom seeds not placing correctly on fluids

@@ -9,7 +9,8 @@ public class CommandInit {
 
     @SubscribeEvent
     public static void onCommandsRegister(RegisterCommandsEvent event) {
-        CommandConfigureHUD.register(event.getDispatcher());
+        CommandReplaceWellspring.register(event.getDispatcher());
+        //CommandConfigureHUD.register(event.getDispatcher());
         //(CommandDispatcher<CommandSource>)
     }
 }

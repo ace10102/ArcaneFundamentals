@@ -20,7 +20,6 @@ public class RitualEffectTreason extends RitualEffect {
 
     public RitualEffectTreason(ResourceLocation ritualName) {
         super(ritualName);
-
     }
 
     @Override

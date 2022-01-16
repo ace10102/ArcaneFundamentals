@@ -22,4 +22,5 @@ public class AFItems {
         // Other
     public static final RegistryObject<Item> VINTEUM_POWDER = ITEMS.register("vinteum_powder", () -> new BlockItem(AFBlocks.VINTEUM_POWDER.get(), new Item.Properties().tab(ArcaneFundamentals.TAB)));
     public static final RegistryObject<Item> MANA_MONOCLE = ITEMS.register("mana_monocle", () -> new Item(new Item.Properties().tab(ArcaneFundamentals.TAB).stacksTo(1)));
+    public static final RegistryObject<Item> ELDRIN_MONOCLE = ITEMS.register("eldrin_monocle", () -> new Item(new Item.Properties().tab(ArcaneFundamentals.TAB).stacksTo(1)));
 }

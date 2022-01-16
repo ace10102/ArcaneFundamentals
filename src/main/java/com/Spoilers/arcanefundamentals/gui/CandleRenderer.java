@@ -83,7 +83,7 @@ public class CandleRenderer {
             for (Direction direction : Direction.values()) {
                 random.setSeed(42L);
                 for (BakedQuad bakedquad : ibakedmodel.getQuads((BlockState)null, direction, random)) {
-                    ivertexbuilder.addVertexData(matrixstack$entry, bakedquad, 1, 1, 1, 0.008f, light, OverlayTexture.NO_OVERLAY, true);//set alpha stupid low to stop texture rendering
+                    ivertexbuilder.addVertexData(matrixstack$entry, bakedquad, 1, 1, 1, 0.02f, light, OverlayTexture.NO_OVERLAY, true);//set alpha stupid low to stop texture rendering
                 }
             }
             //itemRenderer.renderStatic(itemStack, ItemCameraTransforms.TransformType.FIXED, light, OverlayTexture.NO_OVERLAY, matrixStack, buffer);

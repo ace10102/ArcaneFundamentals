@@ -20,7 +20,7 @@ public class AFRenderTypes extends RenderType {
     public static final ResourceLocation MANA_BAR_TEXTURE = new ResourceLocation(ArcaneFundamentals.MOD_ID, "textures/gui/mana_value_bar.png");
     public static final ResourceLocation PORTAL_TEXTURE_RAID = new ResourceLocation("mana-and-artifice", "textures/entity/vortex_raid.png");
 
-    public static final VertexFormat POSITION_TEX_NORMAL_LIGHTMAP = new VertexFormat(ImmutableList.<VertexFormatElement>builder().add(ELEMENT_POSITION).add(ELEMENT_UV0).add(ELEMENT_NORMAL).add(ELEMENT_UV2).add(ELEMENT_PADDING).build());
+    public static final VertexFormat POSITION_TEX_NORMAL_LIGHTMAP = new VertexFormat(ImmutableList.<VertexFormatElement>builder().add(ELEMENT_POSITION).add(ELEMENT_UV0).add(ELEMENT_NORMAL).add(ELEMENT_UV2).add(ELEMENT_PADDING).add(ELEMENT_COLOR).build());
     
     public static final RenderType CANDLE_RENDERER = AFRenderTypes.create("candle_area_render", DefaultVertexFormats.POSITION_COLOR, 1, 256, true, true, RenderType.State.builder().setLineState(new RenderState.LineState(OptionalDouble.empty())).setLayeringState(NO_LAYERING).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setOutputState(OUTLINE_TARGET).setWriteMaskState(COLOR_WRITE).setDepthTestState(NO_DEPTH_TEST).createCompositeState(false));
     public static final RenderType AFGLINT_DIRECT = AFRenderTypes.create("afglint_direct", DefaultVertexFormats.POSITION_TEX, 7, 256, RenderType.State.builder().setTextureState(new RenderState.TextureState(ItemRenderer.ENCHANT_GLINT_LOCATION, true, false)).setWriteMaskState(COLOR_WRITE).setCullState(NO_CULL).setDepthTestState(EQUAL_DEPTH_TEST).setTransparencyState(GLINT_TRANSPARENCY).setTexturingState(GLINT_TEXTURING).createCompositeState(false));

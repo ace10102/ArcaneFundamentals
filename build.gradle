@@ -2,7 +2,7 @@ buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url = 'https://maven.parchmentmc.org' }
-        jcenter()
+        //jcenter()
         mavenCentral()
     }
     dependencies {
@@ -39,7 +39,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = 'alpha-8'
+version = 'alpha-9'
 group = 'com.Spoilers.arcanefundamentals' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'ArcaneFundamentals'
 
@@ -114,15 +114,15 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.33'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.23'
 
-    compileOnly 'blank:mana-and-artifice-1.5.0.9:api' //api, compilation only
-    runtimeOnly fg.deobf('blank:mana-and-artifice:1.5.0.10') //mod itself, deobf for runtime
+    compileOnly 'blank:mana-and-artifice-1.5.1.5:api' //api, compilation only
+    runtimeOnly fg.deobf('blank:mana-and-artifice:1.5.1.5') //mod itself, deobf for runtime
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.2")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.2:api")
 
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.41')
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.57')
 		
     compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.110:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.110")

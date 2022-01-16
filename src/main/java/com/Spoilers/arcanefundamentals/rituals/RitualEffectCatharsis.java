@@ -127,22 +127,20 @@ public class RitualEffectCatharsis extends RitualEffect {
         BlockPos[] crystalPos = new BlockPos[] {context.getCenter().offset(2, 0, 2), context.getCenter().offset(2, 0, -2), context.getCenter().offset(-2, 0, 2), context.getCenter().offset(-2, 0, -2)};
         ITag<Block> afTags = BlockTags.getAllTags().getTagOrEmpty(new ResourceLocation("arcanefundamentals:chimerite_crystals"));
         for (BlockPos pos : crystalPos) {
-            if(!context.getWorld().getBlockState(pos).getBlock().is(afTags)) {
-                return new TranslationTextComponent("ritual.arcanefundamentals.ritual.no_crystal", pos);
+            if (!context.getWorld().getBlockState(pos).getBlock().is(afTags)) {
+                return new TranslationTextComponent("ritual.arcanefundamentals.no_crystal", pos);
             }
         }
-        
         IPlayerMagic playerMagic = context.getCaster().getCapability(ManaAndArtificeMod.getMagicCapability()).orElse(null);
         if (playerMagic == null)
-            return new TranslationTextComponent("error getting player magic");
-        
+            return new TranslationTextComponent("general.arcanefundamentals.caster_error");
         Affinity neededAffinity = getPrimaryAffinity(playerMagic.getSortedAffinityDepths()).getOpposite();
         NonNullList<Entity> entities= getNearbyAffinityEntities(context);
         if (entities.size() < 4) 
-            return new TranslationTextComponent("ritual.arcanefundamentals.ritual.no_affinity", neededAffinity);
+            return new TranslationTextComponent("ritual.arcanefundamentals.no_affinity", neededAffinity);
         for (Entity e: entities) {
             if (!neededAffinity.equals(getEntityAffinity(e, context)))
-                return new TranslationTextComponent("ritual.arcanefundamentals.ritual.wrong_affinity", neededAffinity);
+                return new TranslationTextComponent("ritual.arcanefundamentals.wrong_affinity", neededAffinity);
         }
         return null;
     }

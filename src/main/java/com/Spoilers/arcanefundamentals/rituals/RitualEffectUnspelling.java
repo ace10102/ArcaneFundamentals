@@ -77,10 +77,10 @@ public class RitualEffectUnspelling extends RitualEffect {
             e.remove();
         }
         
-        BlockPos[] resevoirPos = new BlockPos[] {center.offset(3, 0, 0), center.offset(-3, 0, 0), center.offset(0, 0, -3), center.offset(0, 0, 3)};
-        Block resevoir = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("mana-and-artifice:mana_resevoir"));
-        for (BlockPos pos : resevoirPos) {
-            if(!world.getBlockState(pos).getBlock().is(resevoir) || world.getBlockState(pos).getValue(IntegerProperty.create("fill_level", 0, 4)) != 4) {
+        BlockPos[] reservoirPos = new BlockPos[] {center.offset(3, 0, 0), center.offset(-3, 0, 0), center.offset(0, 0, -3), center.offset(0, 0, 3)};
+        Block reservoir = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("mana-and-artifice:mana_resevoir"));
+        for (BlockPos pos : reservoirPos) {
+            if(!world.getBlockState(pos).getBlock().is(reservoir) || world.getBlockState(pos).getValue(IntegerProperty.create("fill_level", 0, 4)) != 4) {
                 continue;
             } else {
                 CompoundNBT updateMana = world.getBlockEntity(pos).serializeNBT();
@@ -128,29 +128,29 @@ public class RitualEffectUnspelling extends RitualEffect {
     public ITextComponent canRitualStart(IRitualContext context) {
         if (spellContext == null) 
             return null;
-        BlockPos[] resevoirPos = new BlockPos[] {context.getCenter().offset(3, 0, 0), context.getCenter().offset(-3, 0, 0), context.getCenter().offset(0, 0, -3), context.getCenter().offset(0, 0, 3)};
-        Block resevoir = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("mana-and-artifice:mana_resevoir"));
-        for (BlockPos pos : resevoirPos) {
-            if(!context.getWorld().getBlockState(pos).getBlock().is(resevoir)) {
-                return new TranslationTextComponent("ritual.arcanefundamentals.ritual.no_resevoir", pos);
+        BlockPos[] reservoirPos = new BlockPos[] {context.getCenter().offset(3, 0, 0), context.getCenter().offset(-3, 0, 0), context.getCenter().offset(0, 0, -3), context.getCenter().offset(0, 0, 3)};
+        Block reservoir = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("mana-and-artifice:mana_resevoir"));
+        for (BlockPos pos : reservoirPos) {
+            if(!context.getWorld().getBlockState(pos).getBlock().is(reservoir)) {
+                return new TranslationTextComponent("ritual.arcanefundamentals.no_reservoir", pos.toShortString());
             } else if ( context.getWorld().getBlockEntity(pos).serializeNBT().getFloat("mana") != 100f) {
-                return new TranslationTextComponent("ritual.arcanefundamentals.ritual.no_mana", pos);
+                return new TranslationTextComponent("ritual.arcanefundamentals.no_mana", pos.toShortString());
             }
         }
         BlockPos[] crystalPos = new BlockPos[] {context.getCenter().offset(2, 0, 2), context.getCenter().offset(2, 0, -2), context.getCenter().offset(-2, 0, 2), context.getCenter().offset(-2, 0, -2)};
         ITag<Block> afTags = BlockTags.getAllTags().getTagOrEmpty(new ResourceLocation("arcanefundamentals:chimerite_crystals"));
         for (BlockPos pos : crystalPos) {
             if(!context.getWorld().getBlockState(pos).getBlock().is(afTags)) {
-                return new TranslationTextComponent("ritual.arcanefundamentals.ritual.no_crystal", pos);
+                return new TranslationTextComponent("ritual.arcanefundamentals.no_crystal", pos.toShortString());
             }
         }
         Affinity neededAffinity = this.spellContext.getSpellAffinity().getOpposite();
         NonNullList<Entity> entities= getNearbyAffinityEntities(context);
         if (entities.size() < 4) 
-            return new TranslationTextComponent("ritual.arcanefundamentals.ritual.no_affinity", neededAffinity);
+            return new TranslationTextComponent("ritual.arcanefundamentals.no_affinity", neededAffinity);
         for (Entity e: entities) {
             if (!neededAffinity.equals(getEntityAffinity(e, context)))
-                return new TranslationTextComponent("ritual.arcanefundamentals.ritual.wrong_affinity", neededAffinity);
+                return new TranslationTextComponent("ritual.arcanefundamentals.wrong_affinity", neededAffinity);
         }
         return null;
     }
@@ -175,11 +175,11 @@ public class RitualEffectUnspelling extends RitualEffect {
                     }
                 }
             }
-            if (this.getFullResevoirs(context)) {
+            if (this.getFullReservoirs(context)) {
                 ParticleType<?> instanceMana = AFParticleType.getCheckedInstance(ParticleGetter.getParticle(ParticleGetter.SPARKLE_LERP_POINT));
                 if (instanceMana != null) {
-                    BlockPos[] resevoirPos = new BlockPos[] {context.getCenter().offset(3, 0, 0), context.getCenter().offset(-3, 0, 0), context.getCenter().offset(0, 0, -3), context.getCenter().offset(0, 0, 3)};
-                    for (BlockPos pos : resevoirPos) {
+                    BlockPos[] reservoirPos = new BlockPos[] {context.getCenter().offset(3, 0, 0), context.getCenter().offset(-3, 0, 0), context.getCenter().offset(0, 0, -3), context.getCenter().offset(0, 0, 3)};
+                    for (BlockPos pos : reservoirPos) {
                         Vector3d start = new Vector3d(pos.getX() + 0.5f, (pos.getY() + 0.3f), (pos.getZ() + 0.5f));
                         for (int i = 0; i < 5; ++i) {
                             context.getWorld().addParticle((IParticleData)instanceMana, start.x() - 0.15f + rnd.nextFloat() * 0.3f, start.y() - 0.15f + rnd.nextFloat() * 0.3f, start.z() - 0.15f + rnd.nextFloat() * 0.3f, me.x(), me.y(), me.z());
@@ -227,11 +227,11 @@ public class RitualEffectUnspelling extends RitualEffect {
         } 
     }
     
-    private boolean getFullResevoirs(IRitualContext context) {
-        BlockPos[] resevoirPos = new BlockPos[] {context.getCenter().offset(3, 0, 0), context.getCenter().offset(-3, 0, 0), context.getCenter().offset(0, 0, -3), context.getCenter().offset(0, 0, 3)};
-        Block resevoir = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("mana-and-artifice:mana_resevoir"));
-        for (BlockPos pos : resevoirPos) {
-            if(!context.getWorld().getBlockState(pos).getBlock().is(resevoir) || context.getWorld().getBlockState(pos).getValue(IntegerProperty.create("fill_level", 0, 4)) != 4) {
+    private boolean getFullReservoirs(IRitualContext context) {
+        BlockPos[] reservoirPos = new BlockPos[] {context.getCenter().offset(3, 0, 0), context.getCenter().offset(-3, 0, 0), context.getCenter().offset(0, 0, -3), context.getCenter().offset(0, 0, 3)};
+        Block reservoir = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("mana-and-artifice:mana_resevoir"));
+        for (BlockPos pos : reservoirPos) {
+            if(!context.getWorld().getBlockState(pos).getBlock().is(reservoir) || context.getWorld().getBlockState(pos).getValue(IntegerProperty.create("fill_level", 0, 4)) != 4) {
                 return false;
             }
         }

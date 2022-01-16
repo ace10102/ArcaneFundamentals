@@ -1,4 +1,4 @@
-package com.Spoilers.arcanefundamentals.util;
+package com.Spoilers.arcanefundamentals.eventhandlers;
 
 import java.util.Comparator;
 import java.util.Optional;
